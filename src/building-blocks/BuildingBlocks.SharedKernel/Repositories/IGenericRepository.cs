@@ -20,5 +20,5 @@ public interface IGenericRepository<TEntity> where TEntity : class
     /// <summary>
     /// 根据条件查询
     /// </summary>
-    Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> predicate);
+    Task<List<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> predicate);
 }

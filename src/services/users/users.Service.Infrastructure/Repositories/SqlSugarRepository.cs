@@ -31,8 +31,8 @@ public class SqlSugarRepository<TEntity> : IGenericRepository<TEntity> where TEn
     }
 
     /// <inheritdoc />
-    public Task<IEnumerable<TEntity>> QueryAsync(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
+    public Task<List<TEntity>> QueryAsync(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
     {
-        return Task.FromResult(_db.Queryable<TEntity>().Where(predicate).AsEnumerable());
+        return _db.Queryable<TEntity>().Where(predicate).ToListAsync();
     }
 }
