@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FileService.Service.Application/FileService.Service.Application.csproj" />
+    <ProjectReference Include="../FileService.Service.Infrastructure/FileService.Service.Infrastructure.csproj" />
+    <ProjectReference Include="../FileService.Service.Domain/FileService.Service.Domain.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+  </ItemGroup>
+</Project>
