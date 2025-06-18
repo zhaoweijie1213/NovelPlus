@@ -1,6 +1,0 @@
-@novels.Service.Api_HostAddress = http://localhost:5120
-
-GET {{novels.Service.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
