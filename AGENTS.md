@@ -24,4 +24,19 @@ java-code-source文件夹为java源码
 
 NovelPlus.sln为.NET解决方案
 
+本仓库是为了将java-code-source文件夹里的java源码转换成.NET项目
+
 大任务拆分为多个子任务分步完成
+
+每个微服务模块的层次结构：    
+
+ \- WebApi 项目 `*.Host.Api`    
+
+ \- Application 项目 `*.Service.Application`   
+
+ \- Domain 项目 `*.Service.Domain`   
+
+ \- Infrastructure 项目 `*.Service.Infrastructure` 
+
+
+
