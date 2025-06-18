@@ -38,5 +38,14 @@ NovelPlus.sln为.NET解决方案
 
  \- Infrastructure 项目 `*.Service.Infrastructure` 
 
+## 层级职责与依赖
 
+| 物理项目                         | 典型命名空间                                                 | 放哪些东西                                                   | 允许引用                       |
+| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------ |
+| **<Svc>.Service.Domain**         | .Domain.Entities<br>.Domain.ValueObjects<br>.Domain.Events<br>.Domain.Services | - 领域实体（User、Book …）<br>- 值对象（Email, Money）<br>- 聚合根、领域服务接口<br>- 领域事件 / 不变式校验 | 仅 System.*                    |
+| **<Svc>.Service.Application**    | .Application.Commands<br>.Application.Queries<br>.Application.Dtos<br>.Application.Handlers | - CQRS 命令 / 查询 & Handler<br>- Application Service<br>- DTO / ViewModel<br>- Repository & 其他接口定义 | Domain, Contracts              |
+| **<Svc>.Service.Infrastructure** | .Infrastructure.Persistence<br>.Infrastructure.Repositories<br>.Infrastructure.Cache | - SqlSugar/EFCore 仓储实现<br>- EasyCaching/Redis、MessageBus 实现<br>- 迁移脚本 & Seed<br>- IoC 扩展方法 `Add<Svc>Infrastructure()` | Application, Domain, Contracts |
+| **<Svc>.Host.Api**               | .Host.Controllers<br>.Host.Endpoints                         | - Minimal API / Controller<br>- Filters、认证、异常处理<br>- Swagger & 健康检查<br>- `Program.cs / Startup.cs` | Application, Contracts         |
+
+> **依赖方向必须单向向内**：Host.Api → Application → Domain；Infrastructure 反向实现接口，但**不得被引用**。
 
