@@ -1,0 +1,24 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore
+        run: dotnet restore src/NovelPlus.sln
+      - name: Build
+        run: dotnet build src/NovelPlus.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test src/NovelPlus.sln --no-build --collect:"XPlat Code Coverage"
+      - name: Publish images
+        if: github.ref == 'refs/heads/main'
+        run: echo "Publish docker images" # placeholder
