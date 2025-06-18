@@ -6,7 +6,7 @@
 **/.DS_Store
 
 .vs
-bin
-obj
+**/bin/
+**/obj/
 TestResults/
 .config/
