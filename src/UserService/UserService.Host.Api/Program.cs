@@ -1,4 +1,4 @@
-using UserService.Core;
+using UserService.Service.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<IUserService, UserService.Core.UserService>();
+builder.Services.AddSingleton<IUserService, UserService.Service.Application.UserService>();
 
 var app = builder.Build();
 

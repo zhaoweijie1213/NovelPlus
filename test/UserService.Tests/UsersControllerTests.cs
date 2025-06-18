@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
-using UserService.Api;
-using UserService.Core.Entities;
+using UserService.Host.Api;
+using UserService.Service.Domain.Entities;
 using Xunit;
 
 namespace UserService.Tests

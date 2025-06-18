@@ -1,6 +1,6 @@
-using UserService.Core.Entities;
+using UserService.Service.Domain.Entities;
 
-namespace UserService.Core
+namespace UserService.Service.Application
 {
     /// <summary>
     /// 用户业务接口

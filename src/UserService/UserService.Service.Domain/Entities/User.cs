@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace UserService.Core.Entities
+namespace UserService.Service.Domain.Entities
 {
     /// <summary>
     /// 用户实体

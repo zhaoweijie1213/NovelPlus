@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using UserService.Core;
-using UserService.Core.Entities;
+using UserService.Service.Application;
+using UserService.Service.Domain.Entities;
 
-namespace UserService.Api.Controllers
+namespace UserService.Host.Api.Controllers
 {
     /// <summary>
     /// 用户接口
