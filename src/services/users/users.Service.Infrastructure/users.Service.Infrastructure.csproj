@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.58" />
+    <ProjectReference Include="../users.Service.Domain/users.Service.Domain.csproj" />
+    <ProjectReference Include="../../../building-blocks/BuildingBlocks.Common/BuildingBlocks.Common.csproj" />
+    <ProjectReference Include="../../../building-blocks/BuildingBlocks.SharedKernel/BuildingBlocks.SharedKernel.csproj" />
+  </ItemGroup>
+</Project>

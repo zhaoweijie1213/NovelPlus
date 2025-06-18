@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: novelpass
+    ports:
+      - "3306:3306"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  gateway:
+    build: ./src/gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - users
+      - novels
+  users:
+    build: ./src/services/users
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+  novels:
+    build: ./src/services/novels
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+  crawler:
+    build: ./src/services/crawler
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+  author-backend:
+    build: ./src/services/author-backend
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+  platform-backend:
+    build: ./src/services/platform-backend
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+  web-portal:
+    build: ./web-portal
+    ports:
+      - "5173:80"
