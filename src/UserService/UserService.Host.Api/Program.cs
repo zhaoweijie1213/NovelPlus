@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.AddQYQSwaggerAndApiVersioning(new NSwag.OpenApiInfo()
 {
-    Title= "User API",
+    Title = "User API",
     Version = "v1"
 });
 

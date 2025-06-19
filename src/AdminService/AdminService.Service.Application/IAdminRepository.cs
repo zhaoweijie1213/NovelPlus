@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using AdminService.Service.Domain.Entities;
-
 namespace AdminService.Service.Application;
 
-/// <summary>
-/// 管理员业务接口
-/// </summary>
-public interface IAdminService
-{
-    /// <summary>
-    /// 获取全部管理员
-    /// </summary>
-    IEnumerable<AdminUser> GetAll();
+using System;
+using System.Collections.Generic;
+using global::AdminService.Service.Domain.Entities;
 
+/// <summary>
+/// 管理员仓储接口
+/// </summary>
+public interface IAdminRepository
+{
     /// <summary>
     /// 根据ID获取管理员
     /// </summary>
-    AdminUser? GetById(long id);
+    AdminUser? Get(long id);
 
     /// <summary>
     /// 条件查询管理员

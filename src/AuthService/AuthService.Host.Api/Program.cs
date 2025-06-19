@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<IAuthService, AuthService.Service.Application.AuthService>();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.AddQYQSwaggerAndApiVersioning( new OpenApiInfo { Title = "Auth API", Version = "v1" });
+builder.AddQYQSwaggerAndApiVersioning(new OpenApiInfo { Title = "Auth API", Version = "v1" });
 
 var app = builder.Build();
 

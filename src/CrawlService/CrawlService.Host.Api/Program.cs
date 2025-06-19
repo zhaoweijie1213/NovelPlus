@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ISpiderService, CrawlService.Service.Application.SpiderService>();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.AddQYQSwaggerAndApiVersioning( new OpenApiInfo { Title = "Crawl API", Version = "v1" });
+builder.AddQYQSwaggerAndApiVersioning(new OpenApiInfo { Title = "Crawl API", Version = "v1" });
 
 var app = builder.Build();
 
