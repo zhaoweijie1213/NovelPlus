@@ -1,8 +1,8 @@
 using CrawlService.Service.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using NSwag;
+using QYQ.Base.Swagger.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,16 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ISpiderService, CrawlService.Service.Application.SpiderService>();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crawl API", Version = "v1" });
-});
+builder.AddQYQSwaggerAndApiVersioning( new OpenApiInfo { Title = "Crawl API", Version = "v1" });
 
 var app = builder.Build();
 
 app.MapControllers();
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseQYQSwaggerUI("Crawl");
 
 app.Run();
 

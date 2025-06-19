@@ -6,6 +6,8 @@
   <ItemGroup>
     <ProjectReference Include="../PayService.Service.Application/PayService.Service.Application.csproj" />
     <ProjectReference Include="../PayService.Service.Infrastructure/PayService.Service.Infrastructure.csproj" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="QYQ.Base.Consul" Version="8.2.6" />
+    <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
+    
   </ItemGroup>
 </Project>

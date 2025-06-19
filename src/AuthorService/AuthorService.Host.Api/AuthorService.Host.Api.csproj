@@ -6,6 +6,8 @@
   <ItemGroup>
     <ProjectReference Include="../AuthorService.Service.Application/AuthorService.Service.Application.csproj" />
     <ProjectReference Include="../AuthorService.Service.Infrastructure/AuthorService.Service.Infrastructure.csproj" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="QYQ.Base.Consul" Version="8.2.6" />
+    <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
+    
   </ItemGroup>
 </Project>

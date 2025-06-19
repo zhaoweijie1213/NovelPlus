@@ -7,7 +7,7 @@
     <ProjectReference Include="../FileService.Service.Application/FileService.Service.Application.csproj" />
     <ProjectReference Include="../FileService.Service.Infrastructure/FileService.Service.Infrastructure.csproj" />
     <ProjectReference Include="../FileService.Service.Domain/FileService.Service.Domain.csproj" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <PackageReference Include="QYQ.Base.Consul" Version="8.2.6" />
+    <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
   </ItemGroup>
 </Project>

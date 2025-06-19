@@ -4,6 +4,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="QYQ.Base.SqlSugar" Version="8.2.3" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="../AuthService.Service.Application/AuthService.Service.Application.csproj" />
   </ItemGroup>
 </Project>
