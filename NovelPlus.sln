@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AB3021
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelPlus.Portal.Service.Domain", "src\Portal\NovelPlus.Portal.Service.Domain\NovelPlus.Portal.Service.Domain.csproj", "{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelPlus.Admin.Test", "test\NovelPlus.Admin.Test\NovelPlus.Admin.Test.csproj", "{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{3A75FB6F-7EB6-4556-AC10-51D567548F3A} = {5AA26F7A-A59F-4BBC-AFFA-A2F7C468659D}
 		{AB302178-4307-480C-A1C1-271727C03C59} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6} = {5AA26F7A-A59F-4BBC-AFFA-A2F7C468659D}
+		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B34F4E1-3976-4949-BC65-4900CE80F2C0}
