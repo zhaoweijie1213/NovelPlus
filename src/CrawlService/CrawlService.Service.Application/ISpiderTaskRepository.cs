@@ -1,28 +1,23 @@
+namespace CrawlService.Service.Application;
+
 using System;
 using System.Collections.Generic;
-using AdminService.Service.Domain.Entities;
-
-namespace AdminService.Service.Application;
+using global::CrawlService.Service.Domain.Entities;
 
 /// <summary>
-/// 管理员业务接口
+/// 爬虫任务仓储接口
 /// </summary>
-public interface IAdminService
+public interface ISpiderTaskRepository
 {
     /// <summary>
-    /// 获取全部管理员
+    /// 根据ID获取任务
     /// </summary>
-    IEnumerable<AdminUser> GetAll();
+    SpiderTask? Get(long id);
 
     /// <summary>
-    /// 根据ID获取管理员
+    /// 条件查询任务
     /// </summary>
-    AdminUser? GetById(long id);
-
-    /// <summary>
-    /// 条件查询管理员
-    /// </summary>
-    IEnumerable<AdminUser> List(IDictionary<string, object> filters);
+    IEnumerable<SpiderTask> List(IDictionary<string, object> filters);
 
     /// <summary>
     /// 查询数量
@@ -30,22 +25,22 @@ public interface IAdminService
     int Count(IDictionary<string, object> filters);
 
     /// <summary>
-    /// 保存管理员
+    /// 保存任务
     /// </summary>
-    int Save(AdminUser admin);
+    int Save(SpiderTask task);
 
     /// <summary>
-    /// 更新管理员
+    /// 更新任务
     /// </summary>
-    int Update(AdminUser admin);
+    int Update(SpiderTask task);
 
     /// <summary>
-    /// 删除管理员
+    /// 删除任务
     /// </summary>
     int Remove(long id);
 
     /// <summary>
-    /// 批量删除管理员
+    /// 批量删除任务
     /// </summary>
     int BatchRemove(long[] ids);
 

@@ -35,7 +35,7 @@ public class BooksController : ControllerBase
     /// 根据ID获取书籍
     /// </summary>
     [HttpGet("{id}")]
-    public ActionResult<Book?> GetById(int id)
+    public ActionResult<Book?> GetById(long id)
     {
         var book = _service.GetById(id);
         if (book == null) return NotFound();

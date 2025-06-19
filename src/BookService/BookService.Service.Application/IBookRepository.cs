@@ -1,25 +1,18 @@
-using System;
-using System.Collections.Generic;
-using BookService.Service.Domain.Entities;
-
 namespace BookService.Service.Application;
 
-/// <summary>
-/// 书籍业务接口
-/// </summary>
-public interface IBookService
-{
-    /// <summary>
-    /// 获取全部书籍
-    /// </summary>
-    IEnumerable<Book> GetAll();
+using System;
+using System.Collections.Generic;
+using global::BookService.Service.Domain.Entities;
 
+/// <summary>
+/// 书籍仓储接口
+/// </summary>
+public interface IBookRepository
+{
     /// <summary>
     /// 根据ID获取书籍
     /// </summary>
-    /// <param name="id">书籍ID</param>
-    /// <returns>书籍实体</returns>
-    Book? GetById(long id);
+    Book? Get(long id);
 
     /// <summary>
     /// 条件查询书籍

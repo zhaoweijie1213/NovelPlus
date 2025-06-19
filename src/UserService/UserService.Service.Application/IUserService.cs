@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UserService.Service.Domain.Entities;
 
 namespace UserService.Service.Application
@@ -10,14 +12,46 @@ namespace UserService.Service.Application
         /// <summary>
         /// 获取全部用户
         /// </summary>
-        /// <returns>用户列表</returns>
         IEnumerable<User> GetAll();
 
         /// <summary>
-        /// 通过ID获取用户
+        /// 根据ID获取用户
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <returns>用户实体</returns>
-        User? GetById(int id);
+        User? GetById(long id);
+
+        /// <summary>
+        /// 条件查询用户
+        /// </summary>
+        IEnumerable<User> List(IDictionary<string, object> filters);
+
+        /// <summary>
+        /// 查询数量
+        /// </summary>
+        int Count(IDictionary<string, object> filters);
+
+        /// <summary>
+        /// 保存用户
+        /// </summary>
+        int Save(User user);
+
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        int Update(User user);
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        int Remove(long id);
+
+        /// <summary>
+        /// 批量删除用户
+        /// </summary>
+        int BatchRemove(long[] ids);
+
+        /// <summary>
+        /// 表统计
+        /// </summary>
+        IDictionary<object, object> TableStat(DateTime minDate);
     }
 }

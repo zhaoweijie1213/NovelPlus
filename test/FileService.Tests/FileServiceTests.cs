@@ -11,6 +11,6 @@ public class FileServiceTests
         IFileService service = new FileService.Service.Application.FileService();
         var files = service.GetAll().ToList();
         Assert.Single(files);
-        Assert.Equal("demo.txt", files[0].FileName);
+        Assert.Equal("demo.txt", files[0].Url);
     }
 }

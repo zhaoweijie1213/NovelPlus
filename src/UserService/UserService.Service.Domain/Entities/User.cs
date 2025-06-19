@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace UserService.Service.Domain.Entities
@@ -8,19 +9,59 @@ namespace UserService.Service.Domain.Entities
     public class User
     {
         /// <summary>
-        /// 用户ID
+        /// 主键
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
-        /// 用户名
+        /// 登录名
         /// </summary>
         [Required]
-        public string UserName { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 登录密码
+        /// </summary>
+        public string Password { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 昵称
+        /// </summary>
+        public string NickName { get; set; } = string.Empty;
 
         /// <summary>
         /// 邮箱地址
         /// </summary>
-        public string? Email { get; set; }
+        public string Email { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 用户头像
+        /// </summary>
+        public string UserPhoto { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 用户性别，0：男，1：女
+        /// </summary>
+        public int UserSex { get; set; }
+
+        /// <summary>
+        /// 账户余额
+        /// </summary>
+        public long AccountBalance { get; set; }
+
+        /// <summary>
+        /// 用户状态，0：正常
+        /// </summary>
+        public int Status { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? CreateTime { get; set; }
+
+        /// <summary>
+        /// 更新时间
+        /// </summary>
+        public DateTime? UpdateTime { get; set; }
     }
 }

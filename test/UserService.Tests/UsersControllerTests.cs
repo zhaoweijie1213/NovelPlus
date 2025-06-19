@@ -30,7 +30,7 @@ namespace UserService.Tests
             var client = _factory.CreateClient();
             var user = await client.GetFromJsonAsync<User>("/api/Users/1");
             Assert.NotNull(user);
-            Assert.Equal("Alice", user!.UserName);
+            Assert.Equal("Alice", user!.Username);
         }
 
         [Fact]

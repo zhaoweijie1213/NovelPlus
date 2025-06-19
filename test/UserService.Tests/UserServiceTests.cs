@@ -19,7 +19,7 @@ namespace UserService.Tests
             IUserService service = new UserService.Service.Application.UserService();
             var user = service.GetById(1);
             Assert.NotNull(user);
-            Assert.Equal("Alice", user!.UserName);
+            Assert.Equal("Alice", user!.Username);
         }
 
         [Fact]
