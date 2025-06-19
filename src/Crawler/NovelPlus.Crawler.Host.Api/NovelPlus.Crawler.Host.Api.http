@@ -1,0 +1,6 @@
+@NovelPlus.Crawler.Host.Api_HostAddress = http://localhost:5082
+
+GET {{NovelPlus.Crawler.Host.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
