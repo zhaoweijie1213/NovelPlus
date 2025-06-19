@@ -11,6 +11,6 @@ public class AdminServiceTests
         IAdminService service = new AdminService.Service.Application.AdminService();
         var admins = service.GetAll().ToList();
         Assert.Single(admins);
-        Assert.Equal("admin", admins[0].UserName);
+        Assert.Equal("admin", admins[0].Username);
     }
 }

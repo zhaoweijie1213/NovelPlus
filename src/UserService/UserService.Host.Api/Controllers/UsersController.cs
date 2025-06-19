@@ -34,7 +34,7 @@ namespace UserService.Host.Api.Controllers
         /// 根据ID获取用户
         /// </summary>
         [HttpGet("{id}")]
-        public ActionResult<User?> GetById(int id)
+        public ActionResult<User?> GetById(long id)
         {
             var user = _service.GetById(id);
             if (user == null) return NotFound();

@@ -1,28 +1,23 @@
+namespace FileService.Service.Application;
+
 using System;
 using System.Collections.Generic;
-using AdminService.Service.Domain.Entities;
-
-namespace AdminService.Service.Application;
+using global::FileService.Service.Domain.Entities;
 
 /// <summary>
-/// 管理员业务接口
+/// 文件仓储接口
 /// </summary>
-public interface IAdminService
+public interface IFileRecordRepository
 {
     /// <summary>
-    /// 获取全部管理员
+    /// 根据ID获取文件
     /// </summary>
-    IEnumerable<AdminUser> GetAll();
+    FileRecord? Get(long id);
 
     /// <summary>
-    /// 根据ID获取管理员
+    /// 条件查询文件
     /// </summary>
-    AdminUser? GetById(long id);
-
-    /// <summary>
-    /// 条件查询管理员
-    /// </summary>
-    IEnumerable<AdminUser> List(IDictionary<string, object> filters);
+    IEnumerable<FileRecord> List(IDictionary<string, object> filters);
 
     /// <summary>
     /// 查询数量
@@ -30,22 +25,22 @@ public interface IAdminService
     int Count(IDictionary<string, object> filters);
 
     /// <summary>
-    /// 保存管理员
+    /// 保存文件
     /// </summary>
-    int Save(AdminUser admin);
+    int Save(FileRecord file);
 
     /// <summary>
-    /// 更新管理员
+    /// 更新文件
     /// </summary>
-    int Update(AdminUser admin);
+    int Update(FileRecord file);
 
     /// <summary>
-    /// 删除管理员
+    /// 删除文件
     /// </summary>
     int Remove(long id);
 
     /// <summary>
-    /// 批量删除管理员
+    /// 批量删除文件
     /// </summary>
     int BatchRemove(long[] ids);
 

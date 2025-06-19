@@ -1,28 +1,23 @@
+namespace AuthorService.Service.Application;
+
 using System;
 using System.Collections.Generic;
-using AdminService.Service.Domain.Entities;
-
-namespace AdminService.Service.Application;
+using global::AuthorService.Service.Domain.Entities;
 
 /// <summary>
-/// 管理员业务接口
+/// 作家仓储接口
 /// </summary>
-public interface IAdminService
+public interface IAuthorRepository
 {
     /// <summary>
-    /// 获取全部管理员
+    /// 根据ID获取作家
     /// </summary>
-    IEnumerable<AdminUser> GetAll();
+    Author? Get(long id);
 
     /// <summary>
-    /// 根据ID获取管理员
+    /// 条件查询作家
     /// </summary>
-    AdminUser? GetById(long id);
-
-    /// <summary>
-    /// 条件查询管理员
-    /// </summary>
-    IEnumerable<AdminUser> List(IDictionary<string, object> filters);
+    IEnumerable<Author> List(IDictionary<string, object> filters);
 
     /// <summary>
     /// 查询数量
@@ -30,22 +25,22 @@ public interface IAdminService
     int Count(IDictionary<string, object> filters);
 
     /// <summary>
-    /// 保存管理员
+    /// 保存作家
     /// </summary>
-    int Save(AdminUser admin);
+    int Save(Author author);
 
     /// <summary>
-    /// 更新管理员
+    /// 更新作家
     /// </summary>
-    int Update(AdminUser admin);
+    int Update(Author author);
 
     /// <summary>
-    /// 删除管理员
+    /// 删除作家
     /// </summary>
     int Remove(long id);
 
     /// <summary>
-    /// 批量删除管理员
+    /// 批量删除作家
     /// </summary>
     int BatchRemove(long[] ids);
 
