@@ -9,8 +9,8 @@ namespace NovelPlus.Admin.Service.Domain.Entities;
 public class SysDataPermEntity
 {
     /// <summary>
-    ///  
-    ///</summary>
+    /// 主键
+    /// </summary>
     [SugarColumn(ColumnName = "id", IsPrimaryKey = true, IsIdentity = true)]
     public long Id { get; set; }
 

@@ -9,8 +9,8 @@ namespace NovelPlus.Admin.Service.Domain.Entities;
 public class SysMenuEntity
 {
     /// <summary>
-    ///  
-    ///</summary>
+    /// 主键
+    /// </summary>
     [SugarColumn(ColumnName = "menu_id", IsPrimaryKey = true, IsIdentity = true)]
     public long MenuId { get; set; }
 

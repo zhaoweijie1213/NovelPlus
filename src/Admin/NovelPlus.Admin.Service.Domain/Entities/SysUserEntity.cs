@@ -3,14 +3,14 @@ using SqlSugar;
 
 namespace NovelPlus.Admin.Service.Domain.Entities;
 /// <summary>
-/// 
-///</summary>
+/// 系统用户
+/// </summary>
 [SugarTable("sys_user")]
 public class SysUserEntity
 {
     /// <summary>
-    ///  
-    ///</summary>
+    /// 主键
+    /// </summary>
     [SugarColumn(ColumnName = "user_id", IsPrimaryKey = true, IsIdentity = true)]
     public long UserId { get; set; }
 
@@ -21,8 +21,8 @@ public class SysUserEntity
     public string Username { get; set; } = string.Empty;
 
     /// <summary>
-    ///  
-    ///</summary>
+    /// 姓名
+    /// </summary>
     [SugarColumn(ColumnName = "name")]
     public string Name { get; set; } = string.Empty;
 
@@ -33,8 +33,8 @@ public class SysUserEntity
     public string Password { get; set; } = string.Empty;
 
     /// <summary>
-    ///  
-    ///</summary>
+    /// 部门ID
+    /// </summary>
     [SugarColumn(ColumnName = "dept_id")]
     public long? DeptId { get; set; }
 
@@ -87,8 +87,8 @@ public class SysUserEntity
     public DateTime? Birth { get; set; }
 
     /// <summary>
-    ///  
-    ///</summary>
+    /// 头像ID
+    /// </summary>
     [SugarColumn(ColumnName = "pic_id")]
     public long? PicId { get; set; }
 

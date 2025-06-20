@@ -9,8 +9,8 @@ namespace NovelPlus.Admin.Service.Domain.Entities;
 public class SysDeptEntity
 {
     /// <summary>
-    ///  
-    ///</summary>
+    /// 主键
+    /// </summary>
     [SugarColumn(ColumnName = "dept_id", IsPrimaryKey = true, IsIdentity = true)]
     public long DeptId { get; set; }
 
