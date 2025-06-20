@@ -6,7 +6,6 @@
 - API返回结果必须定义强类型，不能是object，必须有明确的返回结构
 - 实体的主键不能是nullable类型
 - int 、 long 等代表数量的类型不能是nullable类型
-- 根据现在重构的程度完善项目根目录的README.md文件
 
 ## 构建 & 测试
 1. `dotnet restore`
@@ -17,12 +16,14 @@
 
 ## 质量检查
 
-先检测是否所有方法和属性都有注释,然后
+先检测是否所有方法和属性都有注释,如果没有则补充完善,然后进行质量检查
 
 ```bash
 dotnet format --verify-no-changes
 dotnet tool run dotnet-reportgenerator
 ```
+
+质量检查完成之后根据现在重构的程度完善项目根目录的README.md文件
 
 ## 说明
 
