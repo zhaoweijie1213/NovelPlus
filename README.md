@@ -13,3 +13,4 @@ dotnet test --collect:"XPlat Code Coverage"
 ```bash
 dotnet format --verify-no-changes
 ```
+- 门户模块现包含用户、小说、支付等接口及缓存管理接口，实体和服务均已迁移到對應層。
