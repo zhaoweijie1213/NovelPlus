@@ -114,12 +114,14 @@ public class BookRepository(ILogger<UserRepository> logger, IOptionsMonitor<Data
 
 ## 层级职责与依赖
 
-| 物理项目                         | 典型命名空间                                                 | 放哪些东西                                                   | 允许引用                       |
-| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------ |
-| **<Svc>.Service.Domain**         | .Domain.Entities<br>.Domain.ValueObjects<br>.Domain.Events<br>.Domain.Services | - 领域实体（User、Book …）<br>- 值对象（Email, Money）<br>- 聚合根、领域服务接口<br>- 领域事件 / 不变式校验 | 仅 System.*                    |
-| **<Svc>.Service.Application**    | .Application.Commands<br>.Application.Queries<br>.Application.Dtos<br>.Application.Handlers | - CQRS 命令 / 查询 & Handler<br>- Application Service<br>- DTO / ViewModel<br>- Repository & 其他接口定义 | Domain, Contracts              |
-| **<Svc>.Service.Infrastructure** | .Infrastructure.Persistence<br>.Infrastructure.Repositories<br>.Infrastructure.Cache | - SqlSugar/EFCore 仓储实现<br>- EasyCaching/Redis、MessageBus 实现<br>- 迁移脚本 & Seed<br>- IoC 扩展方法 `Add<Svc>Infrastructure()` | Application, Domain, Contracts |
-| **<Svc>.Host.Api**               | .Host.Controllers<br>.Host.Endpoints                         | - Minimal API / Controller<br>- Filters、认证、异常处理<br>- Swagger & 健康检查<br>- `Program.cs / Startup.cs` | Application, Contracts         |
+| 物理项目                         | 典型命名空间                                                 | 主要存放内容                                                 | 允许引用                                  |
+| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------- |
+| **<Svc>.Service.Domain**         | `.Domain.Entities`  `.Domain.ValueObjects` `.Domain.Repositories` `.Domain.Events` `.Domain.Services` | - **实体 / 聚合根**（`Book`、`User`…）- **值对象**（`Email`、`Money`…）- **仓储接口**（`IBookRepository`…）- 领域服务接口 & 不变式校验- 领域事件 | 仅 **System.\***                          |
+| **<Svc>.Service.Application**    | `.Application.Commands` `.Application.Queries` `.Application.Dtos` `.Application.Handlers` `.Application.Services` | - CQRS **命令 / 查询** 与 **Handler**（MediatR）- 应用服务 / 用例编排- DTO / ViewModel- 横切接口（如 `IDateTime`） | **Domain**, Contracts*                    |
+| **<Svc>.Service.Infrastructure** | `.Infrastructure.Persistence` `.Infrastructure.Repositories` `.Infrastructure.Cache` `.Infrastructure.Messaging` | - **SqlSugar** 仓储实现- Redis / MessageBus 等适配器- 迁移脚本、Seed 数据- IoC 扩展 `Add<Svc>Infrastructure()` | **Domain**, Application (可选), Contracts |
+| **<Svc>.Host.Api**               | `.Host.Controllers` `.Host.Endpoints`                        | - Controller / Minimal API- 认证、异常过滤器- Swagger、健康检查- `Program.cs` / `Startup.cs` | **Application**, Contracts                |
+
+\* **Contracts**：可选的 *<Svc>.Service.Contracts* 项目，专门放 `CreateBookRequest`, `BookResponse` 等 API 公开模型；若项目简单，也可直接放在 Application，目前的项目比较简单，不需要这一层。
 
 > **依赖方向必须单向向内**：Host.Api → Application → Domain；Infrastructure 反向实现接口，但**不得被引用**。
 
