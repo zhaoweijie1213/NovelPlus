@@ -2,65 +2,65 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
-using NovelPlus.Admin.Service.Application.Input;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
 /// <summary>
-/// 小说接口
+/// 新闻接口
 /// </summary>
 [Route("/api/v{version:apiVersion}/[controller]")]
 [Route("/api/[controller]")]
 [ApiController]
 [ApiVersion("1")]
 [ApiExplorerSettings(GroupName = "v1")]
-public class BookController(IBookService service) : ControllerBase
+public class NewsController(INewsService service) : ControllerBase
 {
-    private readonly IBookService _service = service;
+    private readonly INewsService _service = service;
+
     /// <summary>
-    /// 查询小说列表
+    /// 查询新闻列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<BookOutput>>> ListAsync()
+    public Task<ApiResult<List<NewsOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<BookOutput>>().SetRsult(ApiResultCode.Success, new List<BookOutput>());
+        var result = new ApiResult<List<NewsOutput>>().SetRsult(ApiResultCode.Success, new List<NewsOutput>());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 查询单本小说
+    /// 查询单条新闻
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<BookOutput?>> GetAsync(long id)
+    public Task<ApiResult<NewsOutput?>> GetAsync(long id)
     {
-        var result = new ApiResult<BookOutput?>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<NewsOutput?>().SetRsult(ApiResultCode.Success, null);
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 新增小说
+    /// 新增新闻
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] NewsOutput news)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 更新小说
+    /// 更新新闻
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] NewsOutput news)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 删除小说
+    /// 删除新闻
     /// </summary>
     [HttpDelete("{id}")]
     public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)

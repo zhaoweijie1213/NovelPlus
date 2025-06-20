@@ -2,65 +2,65 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
-using NovelPlus.Admin.Service.Application.Input;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
 /// <summary>
-/// 小说接口
+/// 小说评论接口
 /// </summary>
 [Route("/api/v{version:apiVersion}/[controller]")]
 [Route("/api/[controller]")]
 [ApiController]
 [ApiVersion("1")]
 [ApiExplorerSettings(GroupName = "v1")]
-public class BookController(IBookService service) : ControllerBase
+public class BookCommentController(IBookCommentService service) : ControllerBase
 {
-    private readonly IBookService _service = service;
+    private readonly IBookCommentService _service = service;
+
     /// <summary>
-    /// 查询小说列表
+    /// 查询评论列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<BookOutput>>> ListAsync()
+    public Task<ApiResult<List<BookCommentOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<BookOutput>>().SetRsult(ApiResultCode.Success, new List<BookOutput>());
+        var result = new ApiResult<List<BookCommentOutput>>().SetRsult(ApiResultCode.Success, new List<BookCommentOutput>());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 查询单本小说
+    /// 查询单个评论
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<BookOutput?>> GetAsync(long id)
+    public Task<ApiResult<BookCommentOutput?>> GetAsync(long id)
     {
-        var result = new ApiResult<BookOutput?>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<BookCommentOutput?>().SetRsult(ApiResultCode.Success, null);
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 新增小说
+    /// 新增评论
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookCommentOutput comment)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 更新小说
+    /// 更新评论
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookCommentOutput comment)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 删除小说
+    /// 删除评论
     /// </summary>
     [HttpDelete("{id}")]
     public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)

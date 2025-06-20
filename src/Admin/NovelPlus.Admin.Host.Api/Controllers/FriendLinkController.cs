@@ -2,68 +2,68 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
-using NovelPlus.Admin.Service.Application.Input;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
 /// <summary>
-/// 小说接口
+/// 友情链接接口
 /// </summary>
 [Route("/api/v{version:apiVersion}/[controller]")]
 [Route("/api/[controller]")]
 [ApiController]
 [ApiVersion("1")]
 [ApiExplorerSettings(GroupName = "v1")]
-public class BookController(IBookService service) : ControllerBase
+public class FriendLinkController(IFriendLinkService service) : ControllerBase
 {
-    private readonly IBookService _service = service;
+    private readonly IFriendLinkService _service = service;
+
     /// <summary>
-    /// 查询小说列表
+    /// 查询友情链接列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<BookOutput>>> ListAsync()
+    public Task<ApiResult<List<FriendLinkOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<BookOutput>>().SetRsult(ApiResultCode.Success, new List<BookOutput>());
+        var result = new ApiResult<List<FriendLinkOutput>>().SetRsult(ApiResultCode.Success, new List<FriendLinkOutput>());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 查询单本小说
+    /// 查询单个友情链接
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<BookOutput?>> GetAsync(long id)
+    public Task<ApiResult<FriendLinkOutput?>> GetAsync(int id)
     {
-        var result = new ApiResult<BookOutput?>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<FriendLinkOutput?>().SetRsult(ApiResultCode.Success, null);
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 新增小说
+    /// 新增友情链接
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] FriendLinkOutput link)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 更新小说
+    /// 更新友情链接
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookInput book)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] FriendLinkOutput link)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 删除小说
+    /// 删除友情链接
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
+    public Task<ApiResult<EmptyOutput>> DeleteAsync(int id)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
