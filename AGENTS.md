@@ -23,7 +23,7 @@ dotnet format --verify-no-changes
 dotnet tool run dotnet-reportgenerator
 ```
 
-质量检查完成之后根据现在重构的程度完善项目根目录的README.md文件
+质量检查完成之后,根据现在重构的程度完善项目根目录的README.md文件,README.md文件里记录程序的结构情况和基本的功能,暂时不做其他说明
 
 ## 说明
 
@@ -141,6 +141,7 @@ java-code-source/novel-front → src/Portal
 4. api接口统一使用ApiResult<T>返回格式，命名空间为using QYQ.Base.Common.ApiResult;
 5. API返回的定义使用 {xxx}Output统一后缀 例如：UserOutput ,统一放在*Application*层 的Output文件夹
 6. 复杂请求参数需要定义class 名称为 {xxx}Input 后缀 例如：UserInput,统一放在*Application*层 的Input文件夹
+7. 聚合根命名规定为 默认使用 **纯领域名**，不加后缀：`Order.cs`, `Book.cs`, `User.cs` 文件位于 `Domain.Aggregates` 等命名空间
 
 
 
