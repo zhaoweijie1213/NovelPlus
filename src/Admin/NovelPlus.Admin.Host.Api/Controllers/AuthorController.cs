@@ -43,9 +43,9 @@ public class AuthorController(IAuthorService service) : ControllerBase
     /// 新增作者
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<object>> AddAsync([FromBody] AuthorInput author)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] AuthorInput author)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
@@ -53,9 +53,9 @@ public class AuthorController(IAuthorService service) : ControllerBase
     /// 更新作者
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<object>> UpdateAsync([FromBody] AuthorInput author)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] AuthorInput author)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
@@ -63,9 +63,9 @@ public class AuthorController(IAuthorService service) : ControllerBase
     /// 删除作者
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<object>> DeleteAsync(long id)
+    public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 }
