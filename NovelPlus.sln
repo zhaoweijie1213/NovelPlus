@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelPlus.Portal.Service.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelPlus.Admin.Test", "test\NovelPlus.Admin.Test\NovelPlus.Admin.Test.csproj", "{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelPlus.Shared", "src\Shared\NovelPlus.Shared\NovelPlus.Shared.csproj", "{761086B3-253E-49DE-89F4-71AAB6696D32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761086B3-253E-49DE-89F4-71AAB6696D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761086B3-253E-49DE-89F4-71AAB6696D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761086B3-253E-49DE-89F4-71AAB6696D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761086B3-253E-49DE-89F4-71AAB6696D32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +127,7 @@ Global
 		{AB302178-4307-480C-A1C1-271727C03C59} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{85D8E4E9-23FC-D03A-348E-9DE7BFD044B6} = {5AA26F7A-A59F-4BBC-AFFA-A2F7C468659D}
 		{DC118DB3-188B-4AAD-B8D5-FD7262D82CB0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{761086B3-253E-49DE-89F4-71AAB6696D32} = {AB302178-4307-480C-A1C1-271727C03C59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B34F4E1-3976-4949-BC65-4900CE80F2C0}

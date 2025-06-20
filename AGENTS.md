@@ -22,21 +22,51 @@ dotnet tool run dotnet-reportgenerator
 
 java-code-source文件夹为java源码
 
-NovelPlus.sln为.NET解决方案
+本仓库是为了将java-code-source文件夹里的java源码重构成.NET项目
 
-本仓库是为了将java-code-source文件夹里的java源码转换成.NET项目
+Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
 
-大任务拆分为多个子任务分步完成
+### 每个.NET微服务模块的层次结构：    
 
-每个微服务模块的层次结构：    
+####  \- WebApi 项目 `*.Host.Api`    
 
- \- WebApi 项目 `*.Host.Api`    
+####  \- Application 项目 `*.Service.Application`   
 
- \- Application 项目 `*.Service.Application`   
+####  \- Domain 项目 `*.Service.Domain`   
 
- \- Domain 项目 `*.Service.Domain`   
+####  \- Infrastructure 项目 `*.Service.Infrastructure` ORM使用SqlSugar
 
- \- Infrastructure 项目 `*.Service.Infrastructure` 
+##### SqlSugar 仓储骨架示例
+
+```c#
+// Domain/Repositories/IBookRepository.cs
+namespace NovelPlus.Domain.Repositories;
+public interface IBookRepository : ITransientDependency
+{
+    public Task<List<UserEntity>> GetUsersPhoneAsync(long userId);
+}
+
+// Infrastructure/Repositories/BookRepository.cs
+namespace NovelPlus.Infrastructure.Repositories;
+public class BookRepository(ILogger<UserRepository> logger, IOptionsMonitor<DatabaseConfig> options) : BaseRepository<UserEntity>(logger, options.CurrentValue.NovelPlus) : IBookRepository
+{
+    /// <summary>
+    /// 查询用户信息
+    /// </summary>
+    /// <param name="lastId"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
+    public Task<List<UserEntity>> GetUsersPhoneAsync(long userId)
+    {
+        return Db.Queryable<UserEntity>()
+            .Where(i => i.Id == userId)
+            .FirstAsync();
+    }
+}
+
+```
+
+
 
 ## 层级职责与依赖
 
@@ -48,4 +78,18 @@ NovelPlus.sln为.NET解决方案
 | **<Svc>.Host.Api**               | .Host.Controllers<br>.Host.Endpoints                         | - Minimal API / Controller<br>- Filters、认证、异常处理<br>- Swagger & 健康检查<br>- `Program.cs / Startup.cs` | Application, Contracts         |
 
 > **依赖方向必须单向向内**：Host.Api → Application → Domain；Infrastructure 反向实现接口，但**不得被引用**。
+
+### java项目源码与.NET项目的对应关系
+
+java-code-source/novel-admin → src/Admin
+
+java-code-source/novel-crawl → src/Crawler
+
+java-code-source/novel-front → src/Portal
+
+> 1. 将java代码迁移到.NET时需要严格按照项目对应的关系迁移
+> 2. 公共help类、util等放在src/Shared项目里,
+> 3. entity实体必须放在项目各自的Domain层，就算用的同一个数据库表也不能提取到Shared项目,而是各自在Domain里声明Entity
+
+
 
