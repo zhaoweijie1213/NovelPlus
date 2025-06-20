@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
-using NovelPlus.Admin.Service.Domain.Entities;
+using NovelPlus.Admin.Service.Application.Input;
+using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
@@ -16,48 +18,54 @@ namespace NovelPlus.Admin.Host.Api.Controllers;
 [ApiExplorerSettings(GroupName = "v1")]
 public class BookController(IBookService service) : ControllerBase
 {
+    private readonly IBookService _service = service;
     /// <summary>
     /// 查询小说列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<BookEntity>>> ListAsync()
+    public Task<ApiResult<List<BookOutput>>> ListAsync()
     {
-        return Task.FromResult(ApiResult<List<BookEntity>>.Success(new List<BookEntity>()));
+        var result = new ApiResult<List<BookOutput>>().SetRsult(ApiResultCode.Success, new List<BookOutput>());
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 查询单本小说
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<BookEntity?>> GetAsync(long id)
+    public Task<ApiResult<BookOutput?>> GetAsync(long id)
     {
-        return Task.FromResult(ApiResult<BookEntity?>.Success(null));
+        var result = new ApiResult<BookOutput?>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 新增小说
     /// </summary>
     [HttpPost]
-    public Task<ApiResult> AddAsync([FromBody] BookEntity book)
+    public Task<ApiResult<object>> AddAsync([FromBody] BookInput book)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 更新小说
     /// </summary>
     [HttpPut]
-    public Task<ApiResult> UpdateAsync([FromBody] BookEntity book)
+    public Task<ApiResult<object>> UpdateAsync([FromBody] BookInput book)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 删除小说
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult> DeleteAsync(long id)
+    public Task<ApiResult<object>> DeleteAsync(long id)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 }

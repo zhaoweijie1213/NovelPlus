@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
-using NovelPlus.Admin.Service.Domain.Entities;
+using NovelPlus.Admin.Service.Application.Input;
+using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
@@ -16,48 +18,54 @@ namespace NovelPlus.Admin.Host.Api.Controllers;
 [ApiExplorerSettings(GroupName = "v1")]
 public class CategoryController(ICategoryService service) : ControllerBase
 {
+    private readonly ICategoryService _service = service;
     /// <summary>
     /// 查询类别列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<CategoryEntity>>> ListAsync()
+    public Task<ApiResult<List<CategoryOutput>>> ListAsync()
     {
-        return Task.FromResult(ApiResult<List<CategoryEntity>>.Success(new List<CategoryEntity>()));
+        var result = new ApiResult<List<CategoryOutput>>().SetRsult(ApiResultCode.Success, new List<CategoryOutput>());
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 查询单个类别
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<CategoryEntity?>> GetAsync(int id)
+    public Task<ApiResult<CategoryOutput?>> GetAsync(int id)
     {
-        return Task.FromResult(ApiResult<CategoryEntity?>.Success(null));
+        var result = new ApiResult<CategoryOutput?>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 新增类别
     /// </summary>
     [HttpPost]
-    public Task<ApiResult> AddAsync([FromBody] CategoryEntity category)
+    public Task<ApiResult<object>> AddAsync([FromBody] CategoryInput category)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 更新类别
     /// </summary>
     [HttpPut]
-    public Task<ApiResult> UpdateAsync([FromBody] CategoryEntity category)
+    public Task<ApiResult<object>> UpdateAsync([FromBody] CategoryInput category)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 
     /// <summary>
     /// 删除类别
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult> DeleteAsync(int id)
+    public Task<ApiResult<object>> DeleteAsync(int id)
     {
-        return Task.FromResult(ApiResult.Success());
+        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        return Task.FromResult(result);
     }
 }
