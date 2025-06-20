@@ -14,4 +14,8 @@
     <ProjectReference Include="..\NovelPlus.Portal.Service.Application\NovelPlus.Portal.Service.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
