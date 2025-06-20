@@ -20,15 +20,51 @@ dotnet tool run dotnet-reportgenerator
 
 ## 说明
 
-java-code-source文件夹为java源码
-
-本仓库是为了将java-code-source文件夹里的java源码重构成.NET项目
-
-Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
+- java-code-source文件夹为java源码
+- java-code-source/doc/sql为数据库表结构的原始SQL数据
+- 本仓库是为了将java-code-source文件夹里的java源码重构成.NET项目
+- Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
 
 ### 每个.NET微服务模块的层次结构：    
 
 ####  \- WebApi 项目 `*.Host.Api`    
+
+##### Api接口实例
+
+```c#
+using QYQ.Base.Common.ApiResult;
+
+namespace NovelPlus.Admin.Host.Api.Controllers
+{
+     /// <summary>
+ /// 战队查询
+ /// </summary>
+ [Route("/api/v{version:apiVersion}/[controller]")]
+ [Route("/api/[controller]")]
+ [ApiController]
+ [ApiVersion("1")]
+ [ApiExplorerSettings(GroupName = "v1")]
+ public class ClubQueryController : ControllerBase
+ {
+     /// <summary>
+     /// 操作记录
+     /// </summary>
+     /// <param name="clubId"></param>
+     /// <param name="pageIndex"></param>
+     /// <param name="pageSize"></param>
+     /// <returns></returns>
+     [HttpGet("UserOperatorByPageAsync")]
+     public async Task<ApiResult<UserOperatorOutput>> UserOperatorByPageAsync(int clubId, int pageIndex = 1, int 						pageSize = 30)
+     {
+
+     }
+ }
+}
+    
+
+```
+
+
 
 ####  \- Application 项目 `*.Service.Application`   
 
@@ -87,9 +123,14 @@ java-code-source/novel-crawl → src/Crawler
 
 java-code-source/novel-front → src/Portal
 
-> 1. 将java代码迁移到.NET时需要严格按照项目对应的关系迁移
-> 2. 公共help类、util等放在src/Shared项目里,
-> 3. entity实体必须放在项目各自的Domain层，就算用的同一个数据库表也不能提取到Shared项目,而是各自在Domain里声明Entity
+### 代码规范/约定
+
+1. 将java代码迁移到.NET时需要严格按照项目对应的关系迁移
+2. 公共help类、util等放在src/Shared项目里,
+3. entity实体必须放在项目各自的Domain层，就算用的同一个数据库表也不能提取到Shared项目,而是各自在Domain里声明Entity
+4. api接口统一使用ApiResult<T>返回格式，命名空间为using QYQ.Base.Common.ApiResult;
+5. API返回的定义使用 {xxx}Output统一后缀 例如：UserOutput ,统一放在*Application*层 的Output文件夹
+6. 复杂请求参数需要定义class 名称为 {xxx}Input 后缀 例如：UserInput,统一放在*Application*层 的Input文件夹
 
 
 
