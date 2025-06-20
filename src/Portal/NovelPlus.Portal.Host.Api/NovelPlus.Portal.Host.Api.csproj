@@ -10,4 +10,8 @@
     <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NovelPlus.Portal.Service.Application\NovelPlus.Portal.Service.Application.csproj" />
+  </ItemGroup>
+
 </Project>

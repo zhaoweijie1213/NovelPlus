@@ -11,4 +11,8 @@
     <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\NovelPlus.Shared\NovelPlus.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

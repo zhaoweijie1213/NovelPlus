@@ -1,12 +1,28 @@
+using NovelPlus.Shared.Config;
+using NSwag;
+using QYQ.Base.Common.IOCExtensions;
+using QYQ.Base.Swagger.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddQYQSerilog();
+
+builder.Services.Configure<DatabaseConfig>(builder.Configuration.GetSection("ConnectionStrings"));
+
 // Add services to the container.
+builder.Services.AddMultipleService("^NovelPlus.Portal");
 
 builder.Services.AddControllers();
+
+builder.AddQYQSwaggerAndApiVersioning(new OpenApiInfo()
+{
+    Title = "NovelPlus"
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseQYQSwaggerUI("NovelPlus");
 
 app.UseAuthorization();
 
