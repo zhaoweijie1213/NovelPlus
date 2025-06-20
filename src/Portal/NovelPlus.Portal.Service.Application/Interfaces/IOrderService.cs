@@ -1,0 +1,14 @@
+using System.Threading.Tasks;
+
+namespace NovelPlus.Portal.Service.Application.Interfaces;
+
+/// <summary>
+/// 订单服务接口
+/// </summary>
+public interface IOrderService
+{
+    /// <summary>
+    /// 创建充值订单
+    /// </summary>
+    Task<long> CreatePayOrderAsync(byte payChannel, int payAmount, long userId);
+}
