@@ -5,6 +5,8 @@
 - 不允许使用 `dynamic`，除非原因写进代码注释。
 - 每个实体字段和方法需要写注释
 - API返回结果必须定义强类型，不能是object，必须有明确的返回结构
+- 实体的主键不能是nullable类型
+- int 、 long 等代表数量的类型不能是nullable类型
 
 ## 构建 & 测试
 1. `dotnet restore`
