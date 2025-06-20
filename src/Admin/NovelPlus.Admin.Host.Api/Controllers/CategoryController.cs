@@ -43,9 +43,9 @@ public class CategoryController(ICategoryService service) : ControllerBase
     /// 新增类别
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<object>> AddAsync([FromBody] CategoryInput category)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] CategoryInput category)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
@@ -53,9 +53,9 @@ public class CategoryController(ICategoryService service) : ControllerBase
     /// 更新类别
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<object>> UpdateAsync([FromBody] CategoryInput category)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] CategoryInput category)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
@@ -63,9 +63,9 @@ public class CategoryController(ICategoryService service) : ControllerBase
     /// 删除类别
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<object>> DeleteAsync(int id)
+    public Task<ApiResult<EmptyOutput>> DeleteAsync(int id)
     {
-        var result = new ApiResult<object>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 }
