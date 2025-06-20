@@ -9,8 +9,8 @@ namespace NovelPlus.Admin.Service.Domain.Entities;
 public class SysRoleEntity
 {
     /// <summary>
-    ///  
-    ///</summary>
+    /// 主键
+    /// </summary>
     [SugarColumn(ColumnName = "role_id", IsPrimaryKey = true, IsIdentity = true)]
     public long RoleId { get; set; }
 
