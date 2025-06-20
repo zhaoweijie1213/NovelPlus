@@ -8,59 +8,59 @@ using QYQ.Base.Common.ApiResult;
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
 /// <summary>
-/// 充值订单接口
+/// 小说评论接口
 /// </summary>
 [Route("/api/v{version:apiVersion}/[controller]")]
 [Route("/api/[controller]")]
 [ApiController]
 [ApiVersion("1")]
 [ApiExplorerSettings(GroupName = "v1")]
-public class PayController(IPayService service) : ControllerBase
+public class BookCommentController(IBookCommentService service) : ControllerBase
 {
-    private readonly IPayService _service = service;
+    private readonly IBookCommentService _service = service;
 
     /// <summary>
-    /// 查询充值订单列表
+    /// 查询评论列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<OrderPayOutput>>> ListAsync()
+    public Task<ApiResult<List<BookCommentOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<OrderPayOutput>>().SetRsult(ApiResultCode.Success, new List<OrderPayOutput>());
+        var result = new ApiResult<List<BookCommentOutput>>().SetRsult(ApiResultCode.Success, new List<BookCommentOutput>());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 查询充值订单
+    /// 查询单个评论
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<OrderPayOutput?>> GetAsync(long id)
+    public Task<ApiResult<BookCommentOutput?>> GetAsync(long id)
     {
-        var result = new ApiResult<OrderPayOutput?>().SetRsult(ApiResultCode.Success, null);
+        var result = new ApiResult<BookCommentOutput?>().SetRsult(ApiResultCode.Success, null);
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 新增订单
+    /// 新增评论
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] OrderPayOutput order)
+    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookCommentOutput comment)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 更新订单
+    /// 更新评论
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] OrderPayOutput order)
+    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookCommentOutput comment)
     {
         var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
         return Task.FromResult(result);
     }
 
     /// <summary>
-    /// 删除订单
+    /// 删除评论
     /// </summary>
     [HttpDelete("{id}")]
     public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
