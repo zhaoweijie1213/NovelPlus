@@ -29,6 +29,7 @@ dotnet tool run dotnet-reportgenerator
 - java-code-source/doc/sql为数据库表结构的原始SQL数据
 - 本仓库是为了将java-code-source文件夹里的java源码重构成.NET项目
 - Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
+- 目前的重构阶段不涉及具体的业务逻辑，只需要声明相应的API接口,Service，聚合根，数据库仓储接口就可以
 
 ### 每个.NET微服务模块的层次结构：    
 
