@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 
 builder.AddQYQSwaggerAndApiVersioning(new OpenApiInfo()
 {
-    Title= "NovelPlus Crawler"
+    Title = "NovelPlus Crawler"
 });
 
 var app = builder.Build();
