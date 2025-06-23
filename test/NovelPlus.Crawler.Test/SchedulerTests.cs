@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using NovelPlus.Crawler.Service.Application.Services;
 using NovelPlus.Crawler.Service.Domain.Entities;
 using NovelPlus.Crawler.Service.Domain.Services;
-using Quartz;
 using Xunit;
 
 namespace NovelPlus.Crawler.Test;
@@ -26,17 +23,11 @@ public class SchedulerTests
     }
 
     [Fact]
-    public async Task ScheduleJob_ExecuteOnce()
+    public async Task StartTask_RunOnce()
     {
         var http = new FakeHttpClient();
         var parser = new CrawlParser(http);
-        var config = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:NovelPlus"] = ""
-            })
-            .Build();
-        var service = new CrawlerTaskService(parser, config);
+        var service = new CrawlerTaskService(parser);
         var rule = new RuleBean
         {
             BookDetailUrl = "http://t/{bookId}",
@@ -44,10 +35,9 @@ public class SchedulerTests
             AuthorNamePatten = "//*[@id='author']",
             Charset = "UTF-8"
         };
-        await service.CreateTaskAsync("job1", rule, "1");
-        await service.StartAsync();
+        await service.StartTaskAsync("job1", rule, "1");
         await Task.WhenAny(http.Tcs.Task, Task.Delay(2000));
-        await service.StopAsync();
+        service.StopTask("job1");
         Assert.True(http.Tcs.Task.IsCompleted);
     }
 }
