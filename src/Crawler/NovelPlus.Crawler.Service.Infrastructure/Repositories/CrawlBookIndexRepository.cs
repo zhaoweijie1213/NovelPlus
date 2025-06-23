@@ -13,7 +13,11 @@ namespace NovelPlus.Crawler.Service.Infrastructure.Repositories;
 public class CrawlBookIndexRepository(ILogger<CrawlBookIndexRepository> logger, IOptionsMonitor<DatabaseConfig> options)
     : RepositoryBase<BookIndexEntity>(logger, options), ICrawlBookIndexRepository
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// 查询最后的章节
+    /// </summary>
+    /// <param name="bookId">小说ID</param>
+    /// <returns>最后章节信息</returns>
     public async Task<BookIndexEntity?> QueryLastIndexAsync(long bookId)
     {
         return await Db.Queryable<BookIndexEntity>()
