@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 角色数据权限服务实现
+/// 角色数据权限服务实现，用于管理角色与数据权限关系的增删改查操作
 /// </summary>
 public class RoleDataPermService(IRoleDataPermRepository repository, ILogger<RoleDataPermService> logger) : IRoleDataPermService
 {
+    /// <summary>
+    /// 角色数据权限仓储
+    /// </summary>
     private readonly IRoleDataPermRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<RoleDataPermService> _logger = logger;
 
     /// <inheritdoc/>

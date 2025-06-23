@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 用户服务实现
+/// 用户服务实现，用于管理前台用户的增删改查操作
 /// </summary>
 public class UserService(IUserRepository repository, ILogger<UserService> logger) : IUserService
 {
+    /// <summary>
+    /// 用户仓储
+    /// </summary>
     private readonly IUserRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<UserService> _logger = logger;
 
     /// <inheritdoc/>

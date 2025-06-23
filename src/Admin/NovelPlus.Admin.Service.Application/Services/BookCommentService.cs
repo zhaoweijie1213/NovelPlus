@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 评论服务实现
+/// 评论服务实现，用于管理书籍评论的增删改查操作
 /// </summary>
 public class BookCommentService(IBookCommentRepository repository, ILogger<BookCommentService> logger) : IBookCommentService
 {
+    /// <summary>
+    /// 评论仓储
+    /// </summary>
     private readonly IBookCommentRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<BookCommentService> _logger = logger;
 
     /// <inheritdoc/>

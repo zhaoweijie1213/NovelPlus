@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 用户反馈服务实现
+/// 用户反馈服务实现，用于管理用户反馈信息的增删改查操作
 /// </summary>
 public class UserFeedbackService(IUserFeedbackRepository repository, ILogger<UserFeedbackService> logger) : IUserFeedbackService
 {
+    /// <summary>
+    /// 用户反馈仓储
+    /// </summary>
     private readonly IUserFeedbackRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<UserFeedbackService> _logger = logger;
 
     /// <inheritdoc/>

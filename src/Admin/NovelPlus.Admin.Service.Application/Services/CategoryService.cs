@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 分类服务实现
+/// 分类服务实现，用于管理小说分类的增删改查操作
 /// </summary>
 public class CategoryService(ICategoryRepository repository, ILogger<CategoryService> logger) : ICategoryService
 {
+    /// <summary>
+    /// 分类仓储
+    /// </summary>
     private readonly ICategoryRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<CategoryService> _logger = logger;
 
     /// <inheritdoc/>

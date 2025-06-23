@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 会话服务实现
+/// 会话服务实现，用于管理用户会话的增删改查操作
 /// </summary>
 public class SessionService(ISysUserRepository repository, ILogger<SessionService> logger) : ISessionService
 {
+    /// <summary>
+    /// 会话相关的用户仓储
+    /// </summary>
     private readonly ISysUserRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<SessionService> _logger = logger;
 
     /// <inheritdoc/>
