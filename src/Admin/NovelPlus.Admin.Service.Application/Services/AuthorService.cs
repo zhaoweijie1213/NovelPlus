@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 作者服务实现
+/// 作者服务实现，用于管理作者信息的增删改查操作
 /// </summary>
 public class AuthorService(IAuthorRepository repository, ILogger<AuthorService> logger) : IAuthorService
 {
+    /// <summary>
+    /// 作者仓储
+    /// </summary>
     private readonly IAuthorRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<AuthorService> _logger = logger;
 
     /// <inheritdoc/>

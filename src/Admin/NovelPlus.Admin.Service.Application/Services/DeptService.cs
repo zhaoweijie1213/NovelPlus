@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 部门服务实现
+/// 部门服务实现，用于管理部门信息的增删改查操作
 /// </summary>
 public class DeptService(IDeptRepository repository, ILogger<DeptService> logger) : IDeptService
 {
+    /// <summary>
+    /// 部门仓储
+    /// </summary>
     private readonly IDeptRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<DeptService> _logger = logger;
 
     /// <inheritdoc/>

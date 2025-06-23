@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 新闻服务实现
+/// 新闻服务实现，用于管理站点新闻的增删改查操作
 /// </summary>
 public class NewsService(INewsRepository repository, ILogger<NewsService> logger) : INewsService
 {
+    /// <summary>
+    /// 新闻仓储
+    /// </summary>
     private readonly INewsRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<NewsService> _logger = logger;
 
     /// <inheritdoc/>

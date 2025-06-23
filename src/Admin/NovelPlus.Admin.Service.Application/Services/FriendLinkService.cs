@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 友情链接服务实现
+/// 友情链接服务实现，用于管理友情链接的增删改查操作
 /// </summary>
 public class FriendLinkService(IFriendLinkRepository repository, ILogger<FriendLinkService> logger) : IFriendLinkService
 {
+    /// <summary>
+    /// 友情链接仓储
+    /// </summary>
     private readonly IFriendLinkRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<FriendLinkService> _logger = logger;
 
     /// <inheritdoc/>

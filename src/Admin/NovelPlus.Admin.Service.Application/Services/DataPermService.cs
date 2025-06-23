@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 数据权限服务实现
+/// 数据权限服务实现，用于管理数据权限信息的增删改查操作
 /// </summary>
 public class DataPermService(IDataPermRepository repository, ILogger<DataPermService> logger) : IDataPermService
 {
+    /// <summary>
+    /// 数据权限仓储
+    /// </summary>
     private readonly IDataPermRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<DataPermService> _logger = logger;
 
     /// <inheritdoc/>

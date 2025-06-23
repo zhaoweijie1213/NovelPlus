@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 作家邀请码服务实现
+/// 作家邀请码服务实现，用于管理作家邀请码的增删改查操作
 /// </summary>
 public class AuthorCodeService(IAuthorCodeRepository repository, ILogger<AuthorCodeService> logger) : IAuthorCodeService
 {
+    /// <summary>
+    /// 作家邀请码仓储
+    /// </summary>
     private readonly IAuthorCodeRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<AuthorCodeService> _logger = logger;
 
     /// <inheritdoc/>

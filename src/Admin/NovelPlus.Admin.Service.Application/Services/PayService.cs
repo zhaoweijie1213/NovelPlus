@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 支付服务实现
+/// 支付服务实现，用于处理付费相关的增删改查操作
 /// </summary>
 public class PayService(IPayRepository repository, ILogger<PayService> logger) : IPayService
 {
+    /// <summary>
+    /// 支付仓储
+    /// </summary>
     private readonly IPayRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<PayService> _logger = logger;
 
     /// <inheritdoc/>

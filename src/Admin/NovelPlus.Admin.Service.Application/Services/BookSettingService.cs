@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 小说设置服务实现
+/// 小说设置服务实现，用于管理小说相关设置的增删改查操作
 /// </summary>
 public class BookSettingService(IBookSettingRepository repository, ILogger<BookSettingService> logger) : IBookSettingService
 {
+    /// <summary>
+    /// 小说设置仓储
+    /// </summary>
     private readonly IBookSettingRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<BookSettingService> _logger = logger;
 
     /// <inheritdoc/>

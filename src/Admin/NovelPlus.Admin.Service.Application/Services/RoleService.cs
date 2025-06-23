@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 角色服务实现
+/// 角色服务实现，用于管理系统角色的增删改查操作
 /// </summary>
 public class RoleService(IRoleRepository repository, ILogger<RoleService> logger) : IRoleService
 {
+    /// <summary>
+    /// 角色仓储
+    /// </summary>
     private readonly IRoleRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<RoleService> _logger = logger;
 
     /// <inheritdoc/>

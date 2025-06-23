@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 网站信息服务实现
+/// 网站信息服务实现，用于管理站点基本信息的增删改查操作
 /// </summary>
 public class WebsiteInfoService(IWebsiteInfoRepository repository, ILogger<WebsiteInfoService> logger) : IWebsiteInfoService
 {
+    /// <summary>
+    /// 网站信息仓储
+    /// </summary>
     private readonly IWebsiteInfoRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<WebsiteInfoService> _logger = logger;
 
     /// <inheritdoc/>

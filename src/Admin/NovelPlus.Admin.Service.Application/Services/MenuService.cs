@@ -6,11 +6,17 @@ using NovelPlus.Admin.Service.Domain.Repositories;
 namespace NovelPlus.Admin.Service.Application.Services;
 
 /// <summary>
-/// 菜单服务实现
+/// 菜单服务实现，用于管理系统菜单的增删改查操作
 /// </summary>
 public class MenuService(IMenuRepository repository, ILogger<MenuService> logger) : IMenuService
 {
+    /// <summary>
+    /// 菜单仓储
+    /// </summary>
     private readonly IMenuRepository _repository = repository;
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     private readonly ILogger<MenuService> _logger = logger;
 
     /// <inheritdoc/>
