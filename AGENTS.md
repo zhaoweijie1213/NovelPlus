@@ -14,7 +14,7 @@
 
 > 所有补丁必须在本地通过以上 3 步，且行覆盖率 **≥ 80%**。
 
-## 质量检查
+## 质量检查(后端)
 
 先检测是否所有方法和属性都有注释,如果没有则补充完善,然后进行质量检查(注释必须描述属性的作用、方法的功能,不能敷衍)
 
@@ -23,6 +23,16 @@ dotnet format --verify-no-changes
 dotnet tool run dotnet-reportgenerator
 ```
 
+## 质量检查(前端)
+
+前端代码遵循以下检查步骤：
+
+1. 运行 `pnpm install` 安装依赖。
+2. 执行 `pnpm run lint` 进行代码风格检查，确保没有错误和警告。
+3. 执行 `pnpm run build` 确保前端代码能够正确构建。
+
+> 前端补丁必须通过以上 3 步。
+
 ## README更新
 
 质量检查完成后，根据现在重构的程度完善项目根目录的README.md文件，需要加上本次说明的时间(北京时间)节点 yyyy-MM-dd HH:mm:ss 。README.md文件里记录程序的结构情况和基本的功能，还需要说明使用的技术栈
@@ -30,8 +40,9 @@ dotnet tool run dotnet-reportgenerator
 ## 说明
 
 - java-code-source文件夹为java源码
+- novel-plus-vue为现在的前端代码
 - java-code-source/doc/sql为数据库表结构的原始SQL数据
-- 本仓库是为了将java-code-source文件夹里的java源码重构成.NET项目
+- 本仓库是为了将java-code-source文件夹里的java源码重构成.NET Web Api + Vue项目
 - Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
 - API接口声明已经完成,目前的重构阶段已经涉及具体的业务逻辑。
 
