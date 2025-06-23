@@ -74,7 +74,7 @@ java-code-source/novel-front → src/Portal
 - [axios](https://axios-http.com/docs/intro) 用于发送 HTTP 请求与服务端进行交互。
 
 2. **所有前端代码尽可能使用vuetify的组件重构，支持多主题切换**
-3. **前端图片资源使用java-code-source/novel-front的前端模块资源**
+3. **java-code-source/novel-front前端图片资源已经放到novel-plus-vue\public\images**
 4. **公共组件放在novel-plus-vue\src\components文件夹；页面放在novel-plus-vue\src\pages文件夹**
 5. **编程时注意组件化,不要一个页面写非常多的代码**
 
