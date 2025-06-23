@@ -159,6 +159,7 @@ java-code-source/novel-front → src/Portal
 9. 使用Mapster来简化对象map
 10. 依赖注入使用主构造函数的写法,实例化新对象可以使用new()等c#新写法
 11. 单元测试使用IClassFixture<WebApplicationFactory<Program>>来实现依赖注入
+12. 所有前端代码尽可能使用vuetify的组件重构，支持多主题切换
 
 
 
