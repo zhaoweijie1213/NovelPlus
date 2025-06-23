@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Logging.Abstractions;
 using NovelPlus.Admin.Service.Application.Services;
 using NovelPlus.Admin.Service.Domain.Entities;
@@ -8,7 +9,7 @@ using Xunit;
 
 namespace NovelPlus.Admin.Test;
 
-public class ServiceTests
+public class ServiceTests : IClassFixture<WebApplicationFactory<Program>>
 {
     [Fact]
     public async Task BookService_Crud_Works()
