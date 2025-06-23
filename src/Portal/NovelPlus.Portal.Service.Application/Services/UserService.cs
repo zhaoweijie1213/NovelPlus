@@ -17,7 +17,11 @@ public class UserService(IUserRepository repository, ILogger<UserService> logger
     private readonly ILogger<UserService> _logger = logger;
     private readonly ISnowIdGenerator _id = idGenerator;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 注册用户
+    /// </summary>
+    /// <param name="user">用户实体</param>
+    /// <returns>注册后的用户信息，重复返回 null</returns>
     public async Task<UserEntity?> RegisterAsync(UserEntity user)
     {
         if (await _repository.ExistsUserNameAsync(user.Username))
@@ -33,7 +37,11 @@ public class UserService(IUserRepository repository, ILogger<UserService> logger
         return user;
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 用户登录
+    /// </summary>
+    /// <param name="user">登录信息</param>
+    /// <returns>用户实体或 null</returns>
     public Task<UserEntity?> LoginAsync(UserEntity user)
     {
         return _repository.GetByNameAndPasswordAsync(user.Username, user.Password);
