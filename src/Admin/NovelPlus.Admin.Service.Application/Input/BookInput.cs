@@ -7,6 +7,10 @@ namespace NovelPlus.Admin.Service.Application.Input;
 /// </summary>
 public class BookInput
 {
+    /// <summary>
+    /// 主键，用于更新
+    /// </summary>
+    public long Id { get; set; }
     public byte? WorkDirection { get; set; }
     public int? CatId { get; set; }
     public string CatName { get; set; } = string.Empty;
