@@ -159,7 +159,15 @@ java-code-source/novel-front → src/Portal
 9. 使用Mapster来简化对象map
 10. 依赖注入使用主构造函数的写法,实例化新对象可以使用new()等c#新写法
 11. 单元测试使用IClassFixture<WebApplicationFactory<Program>>来实现依赖注入
-12. 所有前端代码尽可能使用vuetify的组件重构，支持多主题切换
 
+## 前端开发说明
 
+1. **novel-plus-vue项目基于java-code-source/novel-front的前端部分重构**
+2. **开发环境使用 Mock 数据和与服务端进行交互，涉及到的技术有：**
+
+- [Nitro](https://nitro.unjs.io/) 轻量级后端服务器，可部署在任何地方，项目用作于 Mock 服务器。
+- [axios](https://axios-http.com/docs/intro) 用于发送 HTTP 请求与服务端进行交互。
+
+2. **所有前端代码尽可能使用vuetify的组件重构，支持多主题切换**
+3. **前端图片资源使用java-code-source/novel-front的前端模块资源**
 
