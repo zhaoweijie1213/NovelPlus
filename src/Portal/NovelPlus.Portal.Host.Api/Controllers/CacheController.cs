@@ -23,7 +23,7 @@ public class CacheController(ICacheService service) : ControllerBase
     [HttpGet("Refresh/{pass}/{type}")]
     public Task<ApiResult<bool>> RefreshCacheAsync(string pass, byte type)
     {
-        var result = new ApiResult<bool>().SetRsult(ApiResultCode.Success, false);
-        return Task.FromResult(result);
+        _service.Del(pass + type);
+        return Task.FromResult(new ApiResult<bool>().SetRsult(ApiResultCode.Success, true));
     }
 }

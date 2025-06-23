@@ -61,4 +61,14 @@ public interface IUserRepository : ITransientDependency
     /// <param name="userId">用户ID</param>
     /// <param name="amount">金额</param>
     Task AddUserBalanceAsync(long userId, int amount);
+
+    /// <summary>
+    /// 判断用户名是否存在
+    /// </summary>
+    Task<bool> ExistsUserNameAsync(string username);
+
+    /// <summary>
+    /// 根据用户名和密码查询用户
+    /// </summary>
+    Task<UserEntity?> GetByNameAndPasswordAsync(string username, string password);
 }
