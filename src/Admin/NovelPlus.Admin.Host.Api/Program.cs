@@ -21,9 +21,9 @@ builder.AddQYQSwaggerAndApiVersioning(new OpenApiInfo()
 {
     Title = "NovelPlus Admin"
 });
-//ѩ��Id���
+// SnowId
 builder.Services.AddSnowIdRedisGenerator(builder.Configuration.GetSection("Redis").Get<RedisDBOptions>());
-//����Redis
+// Redis
 builder.Services.AddEasyCaching(delegate (EasyCachingOptions options)
 {
     options.UseRedis(delegate (RedisOptions config)
@@ -65,8 +65,10 @@ app.MapControllers();
 
 app.Run();
 
+/// <summary>
+/// Host 项目的 Program 类，允许在其他文件中扩展。
+/// </summary>
 public partial class Program
 {
-    // This partial class is used to allow for additional configurations or methods
-    // to be added in other files without modifying this main Program.cs file.
+    // 该部分类用于方便在其他文件中扩展 Program 的功能。
 }
