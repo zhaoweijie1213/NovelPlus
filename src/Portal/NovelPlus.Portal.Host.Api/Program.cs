@@ -29,7 +29,7 @@ builder.Services.AddEasyCaching(delegate (EasyCachingOptions options)
     options.UseRedis(delegate (RedisOptions config)
     {
         config.DBConfig = builder.Configuration.GetSection("Redis").Get<RedisDBOptions>();
-    }, "DefaultRedis").WithMessagePack();
+    }, "DefaultRedis").WithMessagePack("DefaultRedis");
 });
 
 #region  CAP
@@ -47,7 +47,7 @@ builder.Services.AddCap(options =>
     });
     options.UseMySql(opt =>
     {
-        opt.ConnectionString = configuration["SysCap"]!;
+        opt.ConnectionString = configuration["ConnectionStrings:SysCap"]!;
         opt.TableNamePrefix = AppDomain.CurrentDomain.FriendlyName;
     });
 });
