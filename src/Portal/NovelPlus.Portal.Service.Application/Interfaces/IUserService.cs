@@ -1,12 +1,13 @@
-using System.Threading.Tasks;
 using NovelPlus.Portal.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
+using System.Threading.Tasks;
 
 namespace NovelPlus.Portal.Service.Application.Interfaces;
 
 /// <summary>
 /// 用户服务接口
 /// </summary>
-public interface IUserService
+public interface IUserService : IScopeDependency
 {
     /// <summary>
     /// 用户注册

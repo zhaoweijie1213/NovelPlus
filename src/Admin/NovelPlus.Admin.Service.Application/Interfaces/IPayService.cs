@@ -1,14 +1,15 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 充值订单服务接口
 /// </summary>
-public interface IPayService
+public interface IPayService : IScopeDependency
 {
     /// <summary>
     /// 查询单个订单

@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 代码生成列仓储接口
 /// </summary>
-public interface IGenColumnsRepository
+public interface IGenColumnsRepository : ITransientDependency
 {
     /// <summary>
     /// 查询单条记录

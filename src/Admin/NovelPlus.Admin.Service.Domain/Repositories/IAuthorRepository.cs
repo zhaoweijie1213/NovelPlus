@@ -1,14 +1,15 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 作者表仓储接口
 /// </summary>
-public interface IAuthorRepository
+public interface IAuthorRepository : ITransientDependency
 {
     /// <summary>
     /// 查询单个作者

@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 新闻类别仓储接口
 /// </summary>
-public interface ICategoryRepository
+public interface ICategoryRepository : ITransientDependency
 {
     /// <summary>
     /// 查询类别

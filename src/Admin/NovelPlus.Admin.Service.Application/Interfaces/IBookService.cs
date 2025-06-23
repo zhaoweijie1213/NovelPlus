@@ -1,14 +1,15 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 小说表服务接口
 /// </summary>
-public interface IBookService
+public interface IBookService : IScopeDependency
 {
     /// <summary>
     /// 查询单本小说

@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 系统日志仓储接口
 /// </summary>
-public interface ILogRepository
+public interface ILogRepository : ITransientDependency
 {
     /// <summary>
     /// 查询日志

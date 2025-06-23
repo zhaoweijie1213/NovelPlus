@@ -1,14 +1,15 @@
+using NovelPlus.Crawler.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Crawler.Service.Domain.Entities;
 
 namespace NovelPlus.Crawler.Service.Application.Interfaces;
 
 /// <summary>
 /// 小说服务接口
 /// </summary>
-public interface IBookService
+public interface IBookService : IScopeDependency
 {
     /// <summary>
     /// 根据小说名和作者名查询是否存在

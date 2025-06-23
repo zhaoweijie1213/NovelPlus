@@ -1,14 +1,15 @@
+using NovelPlus.Crawler.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Crawler.Service.Domain.Entities;
 
 namespace NovelPlus.Crawler.Service.Domain.Repositories;
 
 /// <summary>
 /// 爬虫小说仓储接口
 /// </summary>
-public interface ICrawlBookRepository
+public interface ICrawlBookRepository : ITransientDependency
 {
     /// <summary>
     /// 查询需要更新的小说集合

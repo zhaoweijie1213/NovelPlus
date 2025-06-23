@@ -1,14 +1,15 @@
+using NovelPlus.Crawler.Service.Application.Input;
+using NovelPlus.Crawler.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Crawler.Service.Domain.Entities;
-using NovelPlus.Crawler.Service.Application.Input;
 
 namespace NovelPlus.Crawler.Service.Application.Interfaces;
 
 /// <summary>
 /// 爬虫服务接口
 /// </summary>
-public interface ICrawlService
+public interface ICrawlService : IScopeDependency
 {
     /// <summary>
     /// 新增爬虫源

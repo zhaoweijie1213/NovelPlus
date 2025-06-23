@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 系统用户仓储接口
 /// </summary>
-public interface ISysUserRepository
+public interface ISysUserRepository : ITransientDependency
 {
     /// <summary>
     /// 查询单个系统用户

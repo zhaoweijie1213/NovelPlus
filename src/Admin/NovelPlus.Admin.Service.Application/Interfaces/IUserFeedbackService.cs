@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 用户反馈服务接口
 /// </summary>
-public interface IUserFeedbackService
+public interface IUserFeedbackService : IScopeDependency
 {
     /// <summary>
     /// 查询单条反馈

@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 网站信息服务接口
 /// </summary>
-public interface IWebsiteInfoService
+public interface IWebsiteInfoService : IScopeDependency
 {
     /// <summary>
     /// 查询单个网站信息

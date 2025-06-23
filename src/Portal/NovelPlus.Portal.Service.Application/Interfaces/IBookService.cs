@@ -1,14 +1,15 @@
+using NovelPlus.Portal.Service.Application.Output;
+using NovelPlus.Portal.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Portal.Service.Domain.Entities;
-using NovelPlus.Portal.Service.Application.Output;
 
 namespace NovelPlus.Portal.Service.Application.Interfaces;
 
 /// <summary>
 /// 小说服务接口
 /// </summary>
-public interface IBookService
+public interface IBookService : IScopeDependency
 {
     /// <summary>
     /// 查询首页小说设置

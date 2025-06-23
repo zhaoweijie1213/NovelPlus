@@ -1,13 +1,14 @@
+using NovelPlus.Crawler.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Crawler.Service.Domain.Entities;
 
 namespace NovelPlus.Crawler.Service.Application.Interfaces;
 
 /// <summary>
 /// 小说内容服务接口
 /// </summary>
-public interface IBookContentService
+public interface IBookContentService : IScopeDependency
 {
     /// <summary>
     /// 保存多个章节内容

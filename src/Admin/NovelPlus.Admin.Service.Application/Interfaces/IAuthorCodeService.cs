@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 作家邀请码表服务接口
 /// </summary>
-public interface IAuthorCodeService
+public interface IAuthorCodeService : IScopeDependency
 {
     /// <summary>
     /// 查询单个邀请码

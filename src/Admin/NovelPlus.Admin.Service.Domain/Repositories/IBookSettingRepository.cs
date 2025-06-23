@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 首页小说设置仓储接口
 /// </summary>
-public interface IBookSettingRepository
+public interface IBookSettingRepository : ITransientDependency
 {
     /// <summary>
     /// 查询首页设置

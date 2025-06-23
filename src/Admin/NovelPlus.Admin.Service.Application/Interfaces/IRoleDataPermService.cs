@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 角色数据权限服务接口
 /// </summary>
-public interface IRoleDataPermService
+public interface IRoleDataPermService : IScopeDependency
 {
     /// <summary>
     /// 查询单个记录

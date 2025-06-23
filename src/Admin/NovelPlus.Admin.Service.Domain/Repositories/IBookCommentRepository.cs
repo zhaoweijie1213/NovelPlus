@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 小说评论仓储接口
 /// </summary>
-public interface IBookCommentRepository
+public interface IBookCommentRepository : ITransientDependency
 {
     /// <summary>
     /// 查询评论

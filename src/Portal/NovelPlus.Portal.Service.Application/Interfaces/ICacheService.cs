@@ -1,3 +1,4 @@
+using QYQ.Base.Common.IOCExtensions;
 using System.Threading.Tasks;
 
 namespace NovelPlus.Portal.Service.Application.Interfaces;
@@ -5,7 +6,7 @@ namespace NovelPlus.Portal.Service.Application.Interfaces;
 /// <summary>
 /// 缓存服务
 /// </summary>
-public interface ICacheService
+public interface ICacheService : IScopeDependency
 {
     /// <summary>
     /// 根据key获取字符串

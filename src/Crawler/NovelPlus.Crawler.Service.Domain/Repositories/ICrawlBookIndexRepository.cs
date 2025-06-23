@@ -1,12 +1,13 @@
-using System.Threading.Tasks;
 using NovelPlus.Crawler.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
+using System.Threading.Tasks;
 
 namespace NovelPlus.Crawler.Service.Domain.Repositories;
 
 /// <summary>
 /// 爬虫小说目录仓储接口
 /// </summary>
-public interface ICrawlBookIndexRepository
+public interface ICrawlBookIndexRepository : ITransientDependency
 {
     /// <summary>
     /// 查询最后的章节

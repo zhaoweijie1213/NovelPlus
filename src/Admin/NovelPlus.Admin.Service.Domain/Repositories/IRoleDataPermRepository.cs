@@ -7,7 +7,7 @@ namespace NovelPlus.Admin.Service.Domain.Repositories;
 /// <summary>
 /// 角色数据权限仓储接口
 /// </summary>
-public interface IRoleDataPermRepository
+public interface IRoleDataPermRepository : ITransientDependency
 {
     /// <summary>
     /// 查询单个记录

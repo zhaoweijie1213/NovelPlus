@@ -1,13 +1,14 @@
+using NovelPlus.Portal.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Portal.Service.Domain.Entities;
 
 namespace NovelPlus.Portal.Service.Domain.Repositories;
 
 /// <summary>
 /// 用户阅读历史仓储接口
 /// </summary>
-public interface IUserReadHistoryRepository
+public interface IUserReadHistoryRepository : ITransientDependency
 {
     /// <summary>
     /// 查询阅读记录

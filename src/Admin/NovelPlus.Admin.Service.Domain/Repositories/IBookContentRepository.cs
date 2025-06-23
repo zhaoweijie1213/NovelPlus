@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Domain.Repositories;
 
 /// <summary>
 /// 小说内容仓储接口
 /// </summary>
-public interface IBookContentRepository
+public interface IBookContentRepository : ITransientDependency
 {
     /// <summary>
     /// 查询章节内容

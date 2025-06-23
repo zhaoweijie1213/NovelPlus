@@ -1,13 +1,14 @@
+using NovelPlus.Admin.Service.Domain.Entities;
+using QYQ.Base.Common.IOCExtensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Service.Application.Interfaces;
 
 /// <summary>
 /// 菜单管理服务接口
 /// </summary>
-public interface IMenuService
+public interface IMenuService : IScopeDependency
 {
     /// <summary>
     /// 查询单个菜单
