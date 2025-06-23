@@ -23,7 +23,9 @@ dotnet format --verify-no-changes
 dotnet tool run dotnet-reportgenerator
 ```
 
-质量检查完成之后,根据现在重构的程度完善项目根目录的README.md文件,README.md文件里记录程序的结构情况和基本的功能,暂时不做其他说明
+## README更新
+
+质量检查完成后，根据现在重构的程度完善项目根目录的README.md文件。README.md文件里记录程序的结构情况和基本的功能，暂时不做其他说明
 
 ## 说明
 
