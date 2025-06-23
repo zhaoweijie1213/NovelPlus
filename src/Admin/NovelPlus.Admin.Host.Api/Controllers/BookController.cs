@@ -4,6 +4,7 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Input;
 using NovelPlus.Admin.Service.Application.Output;
+using Mapster;
 using NovelPlus.Admin.Service.Domain.Entities;
 using QYQ.Base.Common.ApiResult;
 
@@ -21,38 +22,6 @@ public class BookController(IBookService service) : ControllerBase
 {
     private readonly IBookService _service = service;
 
-    private static BookOutput ToOutput(BookEntity entity)
-    {
-        return new BookOutput
-        {
-            Id = entity.Id,
-            WorkDirection = entity.WorkDirection,
-            CatId = entity.CatId,
-            CatName = entity.CatName,
-            PicUrl = entity.PicUrl,
-            BookName = entity.BookName,
-            AuthorId = entity.AuthorId,
-            AuthorName = entity.AuthorName,
-            BookDesc = entity.BookDesc,
-            Score = entity.Score,
-            BookStatus = entity.BookStatus,
-            VisitCount = entity.VisitCount,
-            WordCount = entity.WordCount,
-            CommentCount = entity.CommentCount,
-            YesterdayBuy = entity.YesterdayBuy,
-            LastIndexId = entity.LastIndexId,
-            LastIndexName = entity.LastIndexName,
-            LastIndexUpdateTime = entity.LastIndexUpdateTime,
-            IsVip = entity.IsVip,
-            Status = entity.Status,
-            UpdateTime = entity.UpdateTime,
-            CreateTime = entity.CreateTime,
-            CrawlSourceId = entity.CrawlSourceId,
-            CrawlBookId = entity.CrawlBookId,
-            CrawlLastTime = entity.CrawlLastTime,
-            CrawlIsStop = entity.CrawlIsStop
-        };
-    }
     /// <summary>
     /// 查询小说列表
     /// </summary>
@@ -60,7 +29,7 @@ public class BookController(IBookService service) : ControllerBase
     public async Task<ApiResult<List<BookOutput>>> ListAsync()
     {
         var list = await _service.ListAsync(new Dictionary<string, object>());
-        var output = list.ConvertAll(ToOutput);
+        var output = list.Adapt<List<BookOutput>>();
         return new ApiResult<List<BookOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -71,7 +40,7 @@ public class BookController(IBookService service) : ControllerBase
     public async Task<ApiResult<BookOutput?>> GetAsync(long id)
     {
         var entity = await _service.GetAsync(id);
-        var output = entity == null ? null : ToOutput(entity);
+        var output = entity?.Adapt<BookOutput>();
         return new ApiResult<BookOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -81,34 +50,7 @@ public class BookController(IBookService service) : ControllerBase
     [HttpPost]
     public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookInput book)
     {
-        var entity = new BookEntity
-        {
-            WorkDirection = book.WorkDirection,
-            CatId = book.CatId,
-            CatName = book.CatName,
-            PicUrl = book.PicUrl,
-            BookName = book.BookName,
-            AuthorId = book.AuthorId,
-            AuthorName = book.AuthorName,
-            BookDesc = book.BookDesc,
-            Score = book.Score,
-            BookStatus = book.BookStatus,
-            VisitCount = book.VisitCount,
-            WordCount = book.WordCount,
-            CommentCount = book.CommentCount,
-            YesterdayBuy = book.YesterdayBuy,
-            LastIndexId = book.LastIndexId,
-            LastIndexName = book.LastIndexName,
-            LastIndexUpdateTime = book.LastIndexUpdateTime,
-            IsVip = book.IsVip,
-            Status = book.Status,
-            UpdateTime = book.UpdateTime,
-            CreateTime = book.CreateTime,
-            CrawlSourceId = book.CrawlSourceId,
-            CrawlBookId = book.CrawlBookId,
-            CrawlLastTime = book.CrawlLastTime,
-            CrawlIsStop = book.CrawlIsStop
-        };
+        var entity = book.Adapt<BookEntity>();
         await _service.SaveAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
@@ -119,35 +61,7 @@ public class BookController(IBookService service) : ControllerBase
     [HttpPut]
     public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookInput book)
     {
-        var entity = new BookEntity
-        {
-            Id = book.Id,
-            WorkDirection = book.WorkDirection,
-            CatId = book.CatId,
-            CatName = book.CatName,
-            PicUrl = book.PicUrl,
-            BookName = book.BookName,
-            AuthorId = book.AuthorId,
-            AuthorName = book.AuthorName,
-            BookDesc = book.BookDesc,
-            Score = book.Score,
-            BookStatus = book.BookStatus,
-            VisitCount = book.VisitCount,
-            WordCount = book.WordCount,
-            CommentCount = book.CommentCount,
-            YesterdayBuy = book.YesterdayBuy,
-            LastIndexId = book.LastIndexId,
-            LastIndexName = book.LastIndexName,
-            LastIndexUpdateTime = book.LastIndexUpdateTime,
-            IsVip = book.IsVip,
-            Status = book.Status,
-            UpdateTime = book.UpdateTime,
-            CreateTime = book.CreateTime,
-            CrawlSourceId = book.CrawlSourceId,
-            CrawlBookId = book.CrawlBookId,
-            CrawlLastTime = book.CrawlLastTime,
-            CrawlIsStop = book.CrawlIsStop
-        };
+        var entity = book.Adapt<BookEntity>();
         await _service.UpdateAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }

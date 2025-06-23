@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
+using Mapster;
 using NovelPlus.Admin.Service.Domain.Entities;
 using QYQ.Base.Common.ApiResult;
 
@@ -20,19 +21,6 @@ public class BookCommentController(IBookCommentService service) : ControllerBase
 {
     private readonly IBookCommentService _service = service;
 
-    private static BookCommentOutput ToOutput(BookCommentEntity entity)
-    {
-        return new BookCommentOutput
-        {
-            Id = entity.Id,
-            BookId = entity.BookId,
-            CommentContent = entity.CommentContent,
-            ReplyCount = entity.ReplyCount,
-            AuditStatus = entity.AuditStatus,
-            CreateTime = entity.CreateTime,
-            CreateUserId = entity.CreateUserId
-        };
-    }
 
     /// <summary>
     /// 查询评论列表
@@ -41,7 +29,7 @@ public class BookCommentController(IBookCommentService service) : ControllerBase
     public async Task<ApiResult<List<BookCommentOutput>>> ListAsync()
     {
         var list = await _service.ListAsync(new Dictionary<string, object>());
-        var output = list.ConvertAll(ToOutput);
+        var output = list.Adapt<List<BookCommentOutput>>();
         return new ApiResult<List<BookCommentOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -52,7 +40,7 @@ public class BookCommentController(IBookCommentService service) : ControllerBase
     public async Task<ApiResult<BookCommentOutput?>> GetAsync(long id)
     {
         var entity = await _service.GetAsync(id);
-        var output = entity == null ? null : ToOutput(entity);
+        var output = entity?.Adapt<BookCommentOutput>();
         return new ApiResult<BookCommentOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -62,15 +50,7 @@ public class BookCommentController(IBookCommentService service) : ControllerBase
     [HttpPost]
     public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookCommentOutput comment)
     {
-        var entity = new BookCommentEntity
-        {
-            BookId = comment.BookId,
-            CommentContent = comment.CommentContent,
-            ReplyCount = comment.ReplyCount,
-            AuditStatus = comment.AuditStatus,
-            CreateTime = comment.CreateTime,
-            CreateUserId = comment.CreateUserId
-        };
+        var entity = comment.Adapt<BookCommentEntity>();
         await _service.SaveAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
@@ -81,16 +61,7 @@ public class BookCommentController(IBookCommentService service) : ControllerBase
     [HttpPut]
     public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookCommentOutput comment)
     {
-        var entity = new BookCommentEntity
-        {
-            Id = comment.Id,
-            BookId = comment.BookId,
-            CommentContent = comment.CommentContent,
-            ReplyCount = comment.ReplyCount,
-            AuditStatus = comment.AuditStatus,
-            CreateTime = comment.CreateTime,
-            CreateUserId = comment.CreateUserId
-        };
+        var entity = comment.Adapt<BookCommentEntity>();
         await _service.UpdateAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }

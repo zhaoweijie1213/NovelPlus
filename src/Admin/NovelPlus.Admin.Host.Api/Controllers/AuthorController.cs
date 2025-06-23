@@ -4,6 +4,7 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Input;
 using NovelPlus.Admin.Service.Application.Output;
+using Mapster;
 using NovelPlus.Admin.Service.Domain.Entities;
 using QYQ.Base.Common.ApiResult;
 
@@ -21,22 +22,6 @@ public class AuthorController(IAuthorService service) : ControllerBase
 {
     private readonly IAuthorService _service = service;
 
-    private static AuthorOutput ToOutput(AuthorEntity entity)
-    {
-        return new AuthorOutput
-        {
-            Id = entity.Id,
-            UserId = entity.UserId,
-            InviteCode = entity.InviteCode,
-            PenName = entity.PenName,
-            TelPhone = entity.TelPhone,
-            ChatAccount = entity.ChatAccount,
-            Email = entity.Email,
-            WorkDirection = entity.WorkDirection,
-            Status = entity.Status,
-            CreateTime = entity.CreateTime
-        };
-    }
     /// <summary>
     /// 查询作者列表
     /// </summary>
@@ -44,7 +29,7 @@ public class AuthorController(IAuthorService service) : ControllerBase
     public async Task<ApiResult<List<AuthorOutput>>> ListAsync()
     {
         var list = await _service.ListAsync(new Dictionary<string, object>());
-        var output = list.ConvertAll(ToOutput);
+        var output = list.Adapt<List<AuthorOutput>>();
         return new ApiResult<List<AuthorOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -55,7 +40,7 @@ public class AuthorController(IAuthorService service) : ControllerBase
     public async Task<ApiResult<AuthorOutput?>> GetAsync(long id)
     {
         var entity = await _service.GetAsync(id);
-        var output = entity == null ? null : ToOutput(entity);
+        var output = entity?.Adapt<AuthorOutput>();
         return new ApiResult<AuthorOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
@@ -65,17 +50,7 @@ public class AuthorController(IAuthorService service) : ControllerBase
     [HttpPost]
     public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] AuthorInput author)
     {
-        var entity = new AuthorEntity
-        {
-            UserId = author.UserId,
-            InviteCode = author.InviteCode,
-            PenName = author.PenName,
-            TelPhone = author.TelPhone,
-            ChatAccount = author.ChatAccount,
-            Email = author.Email,
-            WorkDirection = author.WorkDirection,
-            Status = author.Status
-        };
+        var entity = author.Adapt<AuthorEntity>();
         await _service.SaveAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
@@ -86,18 +61,7 @@ public class AuthorController(IAuthorService service) : ControllerBase
     [HttpPut]
     public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] AuthorInput author)
     {
-        var entity = new AuthorEntity
-        {
-            Id = author.Id,
-            UserId = author.UserId,
-            InviteCode = author.InviteCode,
-            PenName = author.PenName,
-            TelPhone = author.TelPhone,
-            ChatAccount = author.ChatAccount,
-            Email = author.Email,
-            WorkDirection = author.WorkDirection,
-            Status = author.Status
-        };
+        var entity = author.Adapt<AuthorEntity>();
         await _service.UpdateAsync(entity);
         return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
