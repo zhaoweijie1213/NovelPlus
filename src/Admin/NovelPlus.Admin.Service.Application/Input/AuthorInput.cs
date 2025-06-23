@@ -8,6 +8,10 @@ namespace NovelPlus.Admin.Service.Application.Input;
 public class AuthorInput
 {
     /// <summary>
+    /// 主键，用于更新
+    /// </summary>
+    public long Id { get; set; }
+    /// <summary>
     /// 用户ID
     /// </summary>
     public long? UserId { get; set; }
