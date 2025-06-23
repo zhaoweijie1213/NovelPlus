@@ -73,4 +73,18 @@ public class UserRepository(ILogger<UserRepository> logger, IOptionsMonitor<Data
             .Where(i => i.Id == userId)
             .ExecuteCommandAsync();
     }
+
+    /// <inheritdoc/>
+    public Task<bool> ExistsUserNameAsync(string username)
+    {
+        return Db.Queryable<UserEntity>().Where(i => i.Username == username).AnyAsync();
+    }
+
+    /// <inheritdoc/>
+    public async Task<UserEntity?> GetByNameAndPasswordAsync(string username, string password)
+    {
+        return await Db.Queryable<UserEntity>()
+            .Where(i => i.Username == username && i.Password == password)
+            .FirstAsync();
+    }
 }

@@ -21,9 +21,9 @@ public class PayController(IOrderService service) : ControllerBase
     /// 创建充值订单
     /// </summary>
     [HttpPost("CreateOrder")]
-    public Task<ApiResult<long>> CreateOrderAsync()
+    public async Task<ApiResult<long>> CreateOrderAsync(byte channel, int amount, long userId)
     {
-        var result = new ApiResult<long>().SetRsult(ApiResultCode.Success, 0);
-        return Task.FromResult(result);
+        var no = await _service.CreatePayOrderAsync(channel, amount, userId);
+        return new ApiResult<long>().SetRsult(ApiResultCode.Success, no);
     }
 }

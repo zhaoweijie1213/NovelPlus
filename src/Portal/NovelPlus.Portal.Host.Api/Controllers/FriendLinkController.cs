@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using NovelPlus.Portal.Service.Application.Interfaces;
 using NovelPlus.Portal.Service.Application.Output;
+using Mapster;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Portal.Host.Api.Controllers;
@@ -22,9 +23,10 @@ public class FriendLinkController(IFriendLinkService service) : ControllerBase
     /// 查询首页友情链接
     /// </summary>
     [HttpGet("ListIndexLink")]
-    public Task<ApiResult<List<FriendLinkOutput>>> ListIndexLinkAsync()
+    public async Task<ApiResult<List<FriendLinkOutput>>> ListIndexLinkAsync()
     {
-        var result = new ApiResult<List<FriendLinkOutput>>().SetRsult(ApiResultCode.Success, new List<FriendLinkOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListIndexLinkAsync();
+        var output = list.Adapt<List<FriendLinkOutput>>();
+        return new ApiResult<List<FriendLinkOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 }

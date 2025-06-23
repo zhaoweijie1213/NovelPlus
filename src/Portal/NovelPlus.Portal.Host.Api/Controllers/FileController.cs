@@ -21,9 +21,9 @@ public class FileController(IFileService service) : ControllerBase
     /// 转存图片
     /// </summary>
     [HttpPost("TransFile")]
-    public Task<ApiResult<string>> TransFileAsync()
+    public async Task<ApiResult<string>> TransFileAsync(string src, string path)
     {
-        var result = new ApiResult<string>().SetRsult(ApiResultCode.Success, string.Empty);
-        return Task.FromResult(result);
+        var url = await _service.TransFileAsync(src, path);
+        return new ApiResult<string>().SetRsult(ApiResultCode.Success, url);
     }
 }

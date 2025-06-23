@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using NovelPlus.Portal.Service.Application.Interfaces;
 using NovelPlus.Portal.Service.Application.Output;
+using Mapster;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Portal.Host.Api.Controllers;
@@ -22,9 +23,10 @@ public class NewsController(INewsService service) : ControllerBase
     /// 查询首页新闻
     /// </summary>
     [HttpGet("ListIndexNews")]
-    public Task<ApiResult<List<NewsOutput>>> ListIndexNewsAsync()
+    public async Task<ApiResult<List<NewsOutput>>> ListIndexNewsAsync()
     {
-        var result = new ApiResult<List<NewsOutput>>().SetRsult(ApiResultCode.Success, new List<NewsOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListIndexNewsAsync();
+        var output = list.Adapt<List<NewsOutput>>();
+        return new ApiResult<List<NewsOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 }

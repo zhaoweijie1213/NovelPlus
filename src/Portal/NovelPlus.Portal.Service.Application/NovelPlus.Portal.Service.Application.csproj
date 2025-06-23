@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NovelPlus.Portal.Service.Domain\NovelPlus.Portal.Service.Domain.csproj" />
+    <PackageReference Include="QYQ.Base.SnowId" Version="8.1.2" />
   </ItemGroup>
 
 </Project>
