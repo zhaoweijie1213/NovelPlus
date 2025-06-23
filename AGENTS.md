@@ -41,102 +41,7 @@ dotnet tool run dotnet-reportgenerator
 
 - java-code-source文件夹为java源码
 - novel-plus-vue对应了ava-code-source\novel-front模块的前端代码
-- java-code-source/doc/sql为数据库表结构的原始SQL数据
-- 本仓库是为了将java-code-source文件夹里的java源码重构成.NET Web Api + Vue项目
-- Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
-- API接口声明已经完成,目前的重构阶段已经涉及具体的业务逻辑。
-
-### 每个.NET微服务模块的层次结构：    
-
-####  \- WebApi 项目 `*.Host.Api`    
-
-##### Api接口实例
-
-```c#
-using QYQ.Base.Common.ApiResult;
-
-namespace NovelPlus.Admin.Host.Api.Controllers
-{
-     /// <summary>
- /// 战队查询
- /// </summary>
- [Route("/api/v{version:apiVersion}/[controller]")]
- [Route("/api/[controller]")]
- [ApiController]
- [ApiVersion("1")]
- [ApiExplorerSettings(GroupName = "v1")]
- public class ClubQueryController : ControllerBase
- {
-     /// <summary>
-     /// 操作记录
-     /// </summary>
-     /// <param name="clubId"></param>
-     /// <param name="pageIndex"></param>
-     /// <param name="pageSize"></param>
-     /// <returns></returns>
-     [HttpGet("UserOperatorByPageAsync")]
-     public async Task<ApiResult<UserOperatorOutput>> UserOperatorByPageAsync(int clubId, int pageIndex = 1, int 						pageSize = 30)
-     {
-
-     }
- }
-}
-    
-
-```
-
-
-
-####  \- Application 项目 `*.Service.Application`   
-
-####  \- Domain 项目 `*.Service.Domain`   
-
-####  \- Infrastructure 项目 `*.Service.Infrastructure` ORM使用SqlSugar
-
-##### SqlSugar 仓储骨架示例
-
-```c#
-// Domain/Repositories/IBookRepository.cs
-namespace NovelPlus.Domain.Repositories;
-public interface IBookRepository : ITransientDependency
-{
-    public Task<List<UserEntity>> GetUsersPhoneAsync(long userId);
-}
-
-// Infrastructure/Repositories/BookRepository.cs
-namespace NovelPlus.Infrastructure.Repositories;
-public class BookRepository(ILogger<UserRepository> logger, IOptionsMonitor<DatabaseConfig> options) : BaseRepository<UserEntity>(logger, options.CurrentValue.NovelPlus) : IBookRepository
-{
-    /// <summary>
-    /// 查询用户信息
-    /// </summary>
-    /// <param name="lastId"></param>
-    /// <param name="pageSize"></param>
-    /// <returns></returns>
-    public Task<List<UserEntity>> GetUsersPhoneAsync(long userId)
-    {
-        return Db.Queryable<UserEntity>()
-            .Where(i => i.Id == userId)
-            .FirstAsync();
-    }
-}
-
-```
-
-
-
-## 层级职责与依赖
-
-| 物理项目                         | 典型命名空间                                                 | 主要存放内容                                                 | 允许引用                                  |
-| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------- |
-| **<Svc>.Service.Domain**         | `.Domain.Entities`  `.Domain.ValueObjects` `.Domain.Repositories` `.Domain.Events` `.Domain.Services` | - **实体 / 聚合根**（`Book`、`User`…）- **值对象**（`Email`、`Money`…）- **仓储接口**（`IBookRepository`…）- 领域服务接口 & 不变式校验- 领域事件 | 仅 **System.\***                          |
-| **<Svc>.Service.Application**    | `.Application.Commands` `.Application.Queries` `.Application.Dtos` `.Application.Handlers` `.Application.Services` | - CQRS **命令 / 查询** 与 **Handler**（MediatR）- 应用服务 / 用例编排- DTO / ViewModel- 横切接口（如 `IDateTime`） | **Domain**, Contracts*                    |
-| **<Svc>.Service.Infrastructure** | `.Infrastructure.Persistence` `.Infrastructure.Repositories` `.Infrastructure.Cache` `.Infrastructure.Messaging` | - **SqlSugar** 仓储实现- Redis / MessageBus 等适配器- 迁移脚本、Seed 数据- IoC 扩展 `Add<Svc>Infrastructure()` | **Domain**, Application (可选), Contracts |
-| **<Svc>.Host.Api**               | `.Host.Controllers` `.Host.Endpoints`                        | - Controller / Minimal API- 认证、异常过滤器- Swagger、健康检查- `Program.cs` / `Startup.cs` | **Application**, Contracts                |
-
-\* **Contracts**：可选的 *<Svc>.Service.Contracts* 项目，专门放 `CreateBookRequest`, `BookResponse` 等 API 公开模型；若项目简单，也可直接放在 Application，目前的项目比较简单，不需要这一层。
-
-> **依赖方向必须单向向内**：Host.Api → Application → Domain；Infrastructure 反向实现接口，但**不得被引用**。
+- 本仓库是为了将java-code-source文件夹里的java源码重构成.NET Web Api + vuetify项目
 
 ### java项目源码与.NET项目的对应关系
 
@@ -146,7 +51,7 @@ java-code-source/novel-crawl → src/Crawler
 
 java-code-source/novel-front → src/Portal
 
-### 代码规范/约定
+### 后端代码规范/约定
 
 1. 将java代码迁移到.NET时需要严格按照项目对应的关系迁移
 2. 公共help类、util等放在src/Shared项目里,
@@ -170,4 +75,6 @@ java-code-source/novel-front → src/Portal
 
 2. **所有前端代码尽可能使用vuetify的组件重构，支持多主题切换**
 3. **前端图片资源使用java-code-source/novel-front的前端模块资源**
+4. **公共组件放在novel-plus-vue\src\components文件夹；页面放在novel-plus-vue\src\pages文件夹**
+5. **编程时注意组件化,不要一个页面写非常多的代码**
 
