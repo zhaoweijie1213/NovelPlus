@@ -10,9 +10,11 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="Quartz" Version="3.9.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Crawler\NovelPlus.Crawler.Service.Domain\NovelPlus.Crawler.Service.Domain.csproj" />
     <ProjectReference Include="..\..\src\Crawler\NovelPlus.Crawler.Service.Infrastructure\NovelPlus.Crawler.Service.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Crawler\NovelPlus.Crawler.Service.Application\NovelPlus.Crawler.Service.Application.csproj" />
   </ItemGroup>
 </Project>
