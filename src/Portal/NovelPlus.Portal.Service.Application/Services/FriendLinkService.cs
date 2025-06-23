@@ -11,6 +11,9 @@ public class FriendLinkService(IFriendLinkRepository repository) : IFriendLinkSe
 {
     private readonly IFriendLinkRepository _repository = repository;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 获取首页展示的友情链接
+    /// </summary>
+    /// <returns>链接列表</returns>
     public Task<List<FriendLinkEntity>> ListIndexLinkAsync() => _repository.ListIndexLinkAsync();
 }

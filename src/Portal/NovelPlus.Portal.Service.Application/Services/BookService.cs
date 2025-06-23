@@ -16,7 +16,10 @@ public class BookService(IBookRepository bookRepository, IBookSettingRepository 
     private readonly IBookSettingRepository _settingRepository = settingRepository;
     private readonly ILogger<BookService> _logger = logger;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 获取首页展示的小说设置
+    /// </summary>
+    /// <returns>按类型分组的小说设置列表</returns>
     public async Task<Dictionary<byte, List<BookSettingOutput>>> ListBookSettingAsync()
     {
         var list = await _settingRepository.ListVoAsync();
@@ -24,7 +27,10 @@ public class BookService(IBookRepository bookRepository, IBookSettingRepository 
         return output.GroupBy(i => i.Type ?? 0).ToDictionary(g => g.Key, g => g.ToList());
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 获取点击量排行榜
+    /// </summary>
+    /// <returns>前十名的小说列表</returns>
     public async Task<List<BookEntity>> ListClickRankAsync()
     {
         var list = await _bookRepository.SearchByPageAsync(new Dictionary<string, object> { { "sort", "visit_count" } });

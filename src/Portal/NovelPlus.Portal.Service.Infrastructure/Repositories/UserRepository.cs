@@ -74,13 +74,22 @@ public class UserRepository(ILogger<UserRepository> logger, IOptionsMonitor<Data
             .ExecuteCommandAsync();
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 判断用户名是否已存在
+    /// </summary>
+    /// <param name="username">用户名</param>
+    /// <returns>存在返回 true</returns>
     public Task<bool> ExistsUserNameAsync(string username)
     {
         return Db.Queryable<UserEntity>().Where(i => i.Username == username).AnyAsync();
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 根据用户名密码查询用户
+    /// </summary>
+    /// <param name="username">用户名</param>
+    /// <param name="password">密码</param>
+    /// <returns>用户实体或 null</returns>
     public async Task<UserEntity?> GetByNameAndPasswordAsync(string username, string password)
     {
         return await Db.Queryable<UserEntity>()

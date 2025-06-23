@@ -13,7 +13,10 @@ namespace NovelPlus.Portal.Service.Infrastructure.Repositories;
 public class FriendLinkRepository(ILogger<FriendLinkRepository> logger, IOptionsMonitor<DatabaseConfig> options)
     : RepositoryBase<FriendLinkEntity>(logger, options), IFriendLinkRepository
 {
-    /// <inheritdoc/>
+    /// <summary>
+    /// 查询首页友情链接
+    /// </summary>
+    /// <returns>友情链接集合</returns>
     public Task<List<FriendLinkEntity>> ListIndexLinkAsync()
     {
         return Db.Queryable<FriendLinkEntity>()

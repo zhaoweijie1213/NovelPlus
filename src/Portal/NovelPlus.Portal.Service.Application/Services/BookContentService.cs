@@ -11,7 +11,12 @@ public class BookContentService(IBookContentRepository repository) : IBookConten
 {
     private readonly IBookContentRepository _repository = repository;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 查询指定章节内容
+    /// </summary>
+    /// <param name="bookId">小说ID</param>
+    /// <param name="bookIndexId">章节ID</param>
+    /// <returns>章节内容或 null</returns>
     public Task<BookContentEntity?> QueryBookContentAsync(long bookId, long bookIndexId)
         => _repository.GetByBookAndIndexAsync(bookId, bookIndexId);
 }

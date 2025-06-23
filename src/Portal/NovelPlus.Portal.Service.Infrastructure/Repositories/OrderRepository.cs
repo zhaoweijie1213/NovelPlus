@@ -12,6 +12,10 @@ namespace NovelPlus.Portal.Service.Infrastructure.Repositories;
 public class OrderRepository(ILogger<OrderRepository> logger, IOptionsMonitor<DatabaseConfig> options)
     : RepositoryBase<OrderPayEntity>(logger, options), IOrderRepository
 {
-    /// <inheritdoc/>
+    /// <summary>
+    /// 新增订单
+    /// </summary>
+    /// <param name="order">订单实体</param>
+    /// <returns>影响行数</returns>
     public Task<int> SaveAsync(OrderPayEntity order) => SaveAsyncInternal(order);
 }

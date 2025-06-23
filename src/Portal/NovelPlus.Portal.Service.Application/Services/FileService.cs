@@ -7,7 +7,12 @@ namespace NovelPlus.Portal.Service.Application.Services;
 /// </summary>
 public class FileService : IFileService
 {
-    /// <inheritdoc/>
+    /// <summary>
+    /// 下载并保存远程文件
+    /// </summary>
+    /// <param name="picSrc">源文件地址</param>
+    /// <param name="picSavePath">本地保存目录</param>
+    /// <returns>保存后的文件路径</returns>
     public async Task<string> TransFileAsync(string picSrc, string picSavePath)
     {
         using var http = new HttpClient();

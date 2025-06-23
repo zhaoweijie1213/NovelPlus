@@ -11,7 +11,10 @@ public class NewsService(INewsRepository repository) : INewsService
 {
     private readonly INewsRepository _repository = repository;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 获取首页新闻列表
+    /// </summary>
+    /// <returns>新闻集合</returns>
     public async Task<List<NewsEntity>> ListIndexNewsAsync()
     {
         var list = await _repository.ListAsync(new Dictionary<string, object>());

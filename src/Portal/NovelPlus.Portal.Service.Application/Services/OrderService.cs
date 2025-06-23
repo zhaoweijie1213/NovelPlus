@@ -13,7 +13,13 @@ public class OrderService(IOrderRepository repository, ILogger<OrderService> log
     private readonly IOrderRepository _repository = repository;
     private readonly ILogger<OrderService> _logger = logger;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 创建支付订单
+    /// </summary>
+    /// <param name="payChannel">支付渠道</param>
+    /// <param name="payAmount">支付金额</param>
+    /// <param name="userId">用户ID</param>
+    /// <returns>订单号</returns>
     public async Task<long> CreatePayOrderAsync(byte payChannel, int payAmount, long userId)
     {
         var now = DateTime.Now;
