@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
+using Mapster;
+using NovelPlus.Admin.Service.Domain.Entities;
 using QYQ.Base.Common.ApiResult;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
@@ -23,49 +25,53 @@ public class AuthorCodeController(IAuthorCodeService service) : ControllerBase
     /// 查询列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<AuthorCodeOutput>>> ListAsync()
+    public async Task<ApiResult<List<AuthorCodeOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<AuthorCodeOutput>>().SetRsult(ApiResultCode.Success, new List<AuthorCodeOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListAsync(new Dictionary<string, object>());
+        var output = list.Adapt<List<AuthorCodeOutput>>();
+        return new ApiResult<List<AuthorCodeOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 查询单条
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<AuthorCodeOutput?>> GetAsync(long id)
+    public async Task<ApiResult<AuthorCodeOutput?>> GetAsync(long id)
     {
-        var result = new ApiResult<AuthorCodeOutput?>().SetRsult(ApiResultCode.Success, null);
-        return Task.FromResult(result);
+        var entity = await _service.GetAsync(id);
+        var output = entity?.Adapt<AuthorCodeOutput>();
+        return new ApiResult<AuthorCodeOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 新增
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] AuthorCodeOutput code)
+    public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] AuthorCodeOutput code)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = code.Adapt<AuthorCodeEntity>();
+        await _service.SaveAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 更新
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] AuthorCodeOutput code)
+    public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] AuthorCodeOutput code)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = code.Adapt<AuthorCodeEntity>();
+        await _service.UpdateAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 删除
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
+    public async Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        await _service.RemoveAsync(id);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 }

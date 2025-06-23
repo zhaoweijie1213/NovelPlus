@@ -3,6 +3,9 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
+using System.Linq;
+using System;
+using Mapster;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
@@ -25,21 +28,41 @@ public class StatController(IUserService userService, IAuthorService authorServi
     /// 获取数量统计
     /// </summary>
     [HttpGet("CountSta")]
-    public Task<ApiResult<StatCountOutput>> CountStaAsync()
+    public async Task<ApiResult<StatCountOutput>> CountStaAsync()
     {
-        var output = new StatCountOutput();
-        var result = new ApiResult<StatCountOutput>().SetRsult(ApiResultCode.Success, output);
-        return Task.FromResult(result);
+        var output = new StatCountOutput
+        {
+            UserCount = await _userService.CountAsync(new Dictionary<string, object>()),
+            AuthorCount = await _authorService.CountAsync(new Dictionary<string, object>()),
+            BookCount = await _bookService.CountAsync(new Dictionary<string, object>()),
+            OrderCount = await _payService.CountAsync(new Dictionary<string, object>())
+        };
+        return new ApiResult<StatCountOutput>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 获取表统计
     /// </summary>
     [HttpGet("TableSta")]
-    public Task<ApiResult<StatTableOutput>> TableStaAsync()
+    public async Task<ApiResult<StatTableOutput>> TableStaAsync()
     {
-        var output = new StatTableOutput();
-        var result = new ApiResult<StatTableOutput>().SetRsult(ApiResultCode.Success, output);
-        return Task.FromResult(result);
+        var minDate = DateTime.Now.AddDays(-30);
+        var userSta = await _userService.TableStaAsync(minDate);
+        var authorSta = await _authorService.TableStaAsync(minDate);
+        var bookSta = await _bookService.TableStaAsync(minDate);
+        var orderSta = await _payService.TableStaAsync(minDate);
+
+        var dates = userSta.Keys.Select(k => k?.ToString() ?? string.Empty).ToList();
+
+        var output = new StatTableOutput
+        {
+            DateList = dates,
+            UserTableSta = userSta.ToDictionary(k => k.Key?.ToString() ?? string.Empty, v => Convert.ToInt32(v.Value)),
+            BookTableSta = bookSta.ToDictionary(k => k.Key?.ToString() ?? string.Empty, v => Convert.ToInt32(v.Value)),
+            AuthorTableSta = authorSta.ToDictionary(k => k.Key?.ToString() ?? string.Empty, v => Convert.ToInt32(v.Value)),
+            OrderTableSta = orderSta.ToDictionary(k => k.Key?.ToString() ?? string.Empty, v => Convert.ToInt32(v.Value))
+        };
+
+        return new ApiResult<StatTableOutput>().SetRsult(ApiResultCode.Success, output);
     }
 }

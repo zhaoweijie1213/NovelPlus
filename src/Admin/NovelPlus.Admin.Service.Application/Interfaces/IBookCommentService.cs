@@ -9,17 +9,38 @@ namespace NovelPlus.Admin.Service.Application.Interfaces;
 /// </summary>
 public interface IBookCommentService
 {
+    /// <summary>
+    /// 查询单条评论
+    /// </summary>
     Task<BookCommentEntity?> GetAsync(long id);
 
+    /// <summary>
+    /// 查询评论列表
+    /// </summary>
     Task<List<BookCommentEntity>> ListAsync(Dictionary<string, object> query);
 
+    /// <summary>
+    /// 查询评论数量
+    /// </summary>
     Task<int> CountAsync(Dictionary<string, object> query);
 
+    /// <summary>
+    /// 新增评论
+    /// </summary>
     Task<int> SaveAsync(BookCommentEntity comment);
 
+    /// <summary>
+    /// 更新评论
+    /// </summary>
     Task<int> UpdateAsync(BookCommentEntity comment);
 
+    /// <summary>
+    /// 删除评论
+    /// </summary>
     Task<int> RemoveAsync(long id);
 
+    /// <summary>
+    /// 批量删除评论
+    /// </summary>
     Task<int> BatchRemoveAsync(long[] ids);
 }
