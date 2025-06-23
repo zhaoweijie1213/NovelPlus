@@ -144,6 +144,8 @@ java-code-source/novel-front → src/Portal
 5. API返回的定义使用 {xxx}Output统一后缀 例如：UserOutput ,统一放在*Application*层 的Output文件夹
 6. 复杂请求参数需要定义class 名称为 {xxx}Input 后缀 例如：UserInput,统一放在*Application*层 的Input文件夹
 7. 聚合根命名规定为 默认使用 **纯领域名**，不加后缀：`Order.cs`, `Book.cs`, `User.cs` 文件位于 `Domain.Aggregates` 等命名空间
+8. 缓存使用redis，nuget使用easycaching
+9. 使用Mapster来简化对象map
 
 
 

@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyCaching.Redis" Version="1.9.2" />
+    <PackageReference Include="EasyCaching.Serialization.MessagePack" Version="1.9.2" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="QYQ.Base.Common" Version="8.5.6" />
     <PackageReference Include="QYQ.Base.SqlSugar" Version="8.2.3" />
   </ItemGroup>
