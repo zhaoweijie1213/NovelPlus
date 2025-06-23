@@ -4,16 +4,19 @@
  * Framework documentation: https://vuetifyjs.com`
  */
 
-// Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
-
 // Composables
 import { createVuetify } from 'vuetify'
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
 
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+import 'vuetify/styles'
+
 export default createVuetify({
   theme: {
     defaultTheme: 'dark',
+    themes: {
+      light: {},
+      dark: {},
+    },
   },
 })
