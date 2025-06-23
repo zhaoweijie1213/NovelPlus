@@ -40,7 +40,7 @@ dotnet tool run dotnet-reportgenerator
 ## 说明
 
 - java-code-source文件夹为java源码
-- novel-plus-vue为现在的前端代码
+- novel-plus-vue对应了ava-code-source\novel-front模块的前端代码
 - java-code-source/doc/sql为数据库表结构的原始SQL数据
 - 本仓库是为了将java-code-source文件夹里的java源码重构成.NET Web Api + Vue项目
 - Entities文件夹保存的是数据库实体声明，迁移时文件里的class定义可以复制到需要用的地方，不过文件名称需要加Entity后缀和注意命名空间的修改,还有string类型如果不是nullable需要声明默认值 string.Empty
