@@ -4,6 +4,8 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
+using Mapster;
+using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
@@ -23,49 +25,53 @@ public class FriendLinkController(IFriendLinkService service) : ControllerBase
     /// 查询友情链接列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<FriendLinkOutput>>> ListAsync()
+    public async Task<ApiResult<List<FriendLinkOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<FriendLinkOutput>>().SetRsult(ApiResultCode.Success, new List<FriendLinkOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListAsync(new Dictionary<string, object>());
+        var output = list.Adapt<List<FriendLinkOutput>>();
+        return new ApiResult<List<FriendLinkOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 查询单个友情链接
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<FriendLinkOutput?>> GetAsync(int id)
+    public async Task<ApiResult<FriendLinkOutput?>> GetAsync(int id)
     {
-        var result = new ApiResult<FriendLinkOutput?>().SetRsult(ApiResultCode.Success, null);
-        return Task.FromResult(result);
+        var entity = await _service.GetAsync(id);
+        var output = entity?.Adapt<FriendLinkOutput>();
+        return new ApiResult<FriendLinkOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 新增友情链接
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] FriendLinkOutput link)
+    public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] FriendLinkOutput link)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = link.Adapt<FriendLinkEntity>();
+        await _service.SaveAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 更新友情链接
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] FriendLinkOutput link)
+    public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] FriendLinkOutput link)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = link.Adapt<FriendLinkEntity>();
+        await _service.UpdateAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 删除友情链接
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<EmptyOutput>> DeleteAsync(int id)
+    public async Task<ApiResult<EmptyOutput>> DeleteAsync(int id)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        await _service.RemoveAsync(id);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 }
