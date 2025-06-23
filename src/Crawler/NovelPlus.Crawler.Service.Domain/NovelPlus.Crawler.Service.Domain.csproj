@@ -16,6 +16,7 @@
     <PackageReference Include="QYQ.Base.SnowId" Version="8.1.2" />
     <PackageReference Include="QYQ.Base.SqlSugar" Version="8.2.3" />
     <PackageReference Include="QYQ.Base.Swagger" Version="8.0.7" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
   </ItemGroup>
 
   <ItemGroup>
