@@ -4,6 +4,8 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
+using Mapster;
+using NovelPlus.Admin.Service.Domain.Entities;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
@@ -23,49 +25,53 @@ public class BookSettingController(IBookSettingService service) : ControllerBase
     /// 查询设置列表
     /// </summary>
     [HttpGet("List")]
-    public Task<ApiResult<List<BookSettingOutput>>> ListAsync()
+    public async Task<ApiResult<List<BookSettingOutput>>> ListAsync()
     {
-        var result = new ApiResult<List<BookSettingOutput>>().SetRsult(ApiResultCode.Success, new List<BookSettingOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListAsync(new Dictionary<string, object>());
+        var output = list.Adapt<List<BookSettingOutput>>();
+        return new ApiResult<List<BookSettingOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 查询单个设置
     /// </summary>
     [HttpGet("{id}")]
-    public Task<ApiResult<BookSettingOutput?>> GetAsync(long id)
+    public async Task<ApiResult<BookSettingOutput?>> GetAsync(long id)
     {
-        var result = new ApiResult<BookSettingOutput?>().SetRsult(ApiResultCode.Success, null);
-        return Task.FromResult(result);
+        var entity = await _service.GetAsync(id);
+        var output = entity?.Adapt<BookSettingOutput>();
+        return new ApiResult<BookSettingOutput?>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 新增设置
     /// </summary>
     [HttpPost]
-    public Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookSettingOutput setting)
+    public async Task<ApiResult<EmptyOutput>> AddAsync([FromBody] BookSettingOutput setting)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = setting.Adapt<BookSettingEntity>();
+        await _service.SaveAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 更新设置
     /// </summary>
     [HttpPut]
-    public Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookSettingOutput setting)
+    public async Task<ApiResult<EmptyOutput>> UpdateAsync([FromBody] BookSettingOutput setting)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        var entity = setting.Adapt<BookSettingEntity>();
+        await _service.UpdateAsync(entity);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 
     /// <summary>
     /// 删除设置
     /// </summary>
     [HttpDelete("{id}")]
-    public Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
+    public async Task<ApiResult<EmptyOutput>> DeleteAsync(long id)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        await _service.RemoveAsync(id);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 }

@@ -4,6 +4,7 @@ using Asp.Versioning;
 using NovelPlus.Admin.Service.Application.Interfaces;
 using NovelPlus.Admin.Service.Application.Output;
 using QYQ.Base.Common.ApiResult;
+using Mapster;
 
 namespace NovelPlus.Admin.Host.Api.Controllers;
 
@@ -23,19 +24,20 @@ public class SessionController(ISessionService service) : ControllerBase
     /// 在线用户列表
     /// </summary>
     [HttpGet("OnlineUsers")]
-    public Task<ApiResult<List<UserOutput>>> OnlineUsersAsync()
+    public async Task<ApiResult<List<UserOutput>>> OnlineUsersAsync()
     {
-        var result = new ApiResult<List<UserOutput>>().SetRsult(ApiResultCode.Success, new List<UserOutput>());
-        return Task.FromResult(result);
+        var list = await _service.ListOnlineUsersAsync();
+        var output = list.Adapt<List<UserOutput>>();
+        return new ApiResult<List<UserOutput>>().SetRsult(ApiResultCode.Success, output);
     }
 
     /// <summary>
     /// 强制下线
     /// </summary>
     [HttpPost("ForceLogout/{sessionId}")]
-    public Task<ApiResult<EmptyOutput>> ForceLogoutAsync(string sessionId)
+    public async Task<ApiResult<EmptyOutput>> ForceLogoutAsync(string sessionId)
     {
-        var result = new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
-        return Task.FromResult(result);
+        await _service.ForceLogoutAsync(sessionId);
+        return new ApiResult<EmptyOutput>().SetRsult(ApiResultCode.Success, new EmptyOutput());
     }
 }
