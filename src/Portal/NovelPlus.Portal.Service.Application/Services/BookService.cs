@@ -20,7 +20,7 @@ public class BookService(IBookRepository bookRepository, IBookSettingRepository 
     /// 获取首页展示的小说设置
     /// </summary>
     /// <returns>按类型分组的小说设置列表</returns>
-    public async Task<Dictionary<byte, List<BookSettingOutput>>> ListBookSettingAsync()
+    public async Task<Dictionary<int, List<BookSettingOutput>>> ListBookSettingAsync()
     {
         var list = await _settingRepository.ListVoAsync();
         var output = list.Adapt<List<BookSettingOutput>>();

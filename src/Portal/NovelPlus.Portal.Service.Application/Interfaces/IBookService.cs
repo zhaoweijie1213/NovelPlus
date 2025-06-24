@@ -14,7 +14,7 @@ public interface IBookService : IScopeDependency
     /// <summary>
     /// 查询首页小说设置
     /// </summary>
-    Task<Dictionary<byte, List<BookSettingOutput>>> ListBookSettingAsync();
+    Task<Dictionary<int, List<BookSettingOutput>>> ListBookSettingAsync();
 
     /// <summary>
     /// 查询首页点击榜单

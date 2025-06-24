@@ -18,12 +18,12 @@ public class BookSettingOutput
     /// <summary>
     /// 排序值
     /// </summary>
-    public byte? Sort { get; set; }
+    public int Sort { get; set; }
 
     /// <summary>
     /// 类型
     /// </summary>
-    public byte? Type { get; set; }
+    public int? Type { get; set; }
 
     /// <summary>
     /// 创建时间

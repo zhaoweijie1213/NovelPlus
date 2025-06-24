@@ -25,13 +25,13 @@ public class BookSettingEntity
     /// 排序
     /// </summary>
     [SugarColumn(ColumnName = "sort")]
-    public byte? Sort { get; set; }
+    public int Sort { get; set; }
 
     /// <summary>
     /// 首页类型
     /// </summary>
     [SugarColumn(ColumnName = "type")]
-    public byte? Type { get; set; }
+    public int? Type { get; set; }
 
     /// <summary>
     /// 创建时间

@@ -22,9 +22,9 @@ public class BookController(IBookService service) : ControllerBase
     /// 查询首页小说设置
     /// </summary>
     [HttpGet("ListSetting")]
-    public async Task<ApiResult<Dictionary<byte, List<BookSettingOutput>>>> ListSettingAsync()
+    public async Task<ApiResult<Dictionary<int, List<BookSettingOutput>>>> ListSettingAsync()
     {
         var data = await _service.ListBookSettingAsync();
-        return new ApiResult<Dictionary<byte, List<BookSettingOutput>>>().SetRsult(ApiResultCode.Success, data);
+        return new ApiResult<Dictionary<int, List<BookSettingOutput>>>().SetRsult(ApiResultCode.Success, data);
     }
 }
