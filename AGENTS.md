@@ -14,7 +14,7 @@
 
 > 所有补丁必须在本地通过以上 3 步，且行覆盖率 **≥ 80%**。
 
-## 质量检查(后端)
+## 质量检查
 
 先检测是否所有方法和属性都有注释,如果没有则补充完善,然后进行质量检查(注释必须描述属性的作用、方法的功能,不能敷衍)
 
@@ -22,16 +22,6 @@
 dotnet format --verify-no-changes
 dotnet tool run dotnet-reportgenerator
 ```
-
-## 质量检查(前端)
-
-前端代码遵循以下检查步骤：
-
-1. 运行 `pnpm install` 安装依赖。
-2. 执行 `pnpm run lint` 进行代码风格检查，确保没有错误和警告。
-3. 执行 `pnpm run build` 确保前端代码能够正确构建。
-
-> 前端补丁必须通过以上 3 步。
 
 ## README更新
 
@@ -64,17 +54,3 @@ java-code-source/novel-front → src/Portal
 9. 使用Mapster来简化对象map
 10. 依赖注入使用主构造函数的写法,实例化新对象可以使用new()等c#新写法
 11. 单元测试使用IClassFixture<WebApplicationFactory<Program>>来实现依赖注入
-
-## 前端开发说明
-
-1. **novel-plus-vue项目基于java-code-source/novel-front的前端部分重构**
-2. **开发环境使用 Mock 数据和与服务端进行交互，涉及到的技术有：**
-
-- [Nitro](https://nitro.unjs.io/) 轻量级后端服务器，可部署在任何地方，项目用作于 Mock 服务器。
-- [axios](https://axios-http.com/docs/intro) 用于发送 HTTP 请求与服务端进行交互。
-
-2. **所有前端代码尽可能使用vuetify的组件重构，支持多主题切换**
-3. **java-code-source/novel-front前端图片资源已经放到novel-plus-vue\public\images**
-4. **公共组件放在novel-plus-vue\src\components文件夹；页面放在novel-plus-vue\src\pages文件夹**
-5. **编程时注意组件化,不要一个页面写非常多的代码**
-
