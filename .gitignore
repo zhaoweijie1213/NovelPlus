@@ -10,3 +10,4 @@
 **/obj/
 TestResults/
 .config/
+/novel-plus-vue/src/components.d.ts
